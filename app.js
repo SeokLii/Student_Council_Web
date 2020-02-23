@@ -33,9 +33,9 @@ app.use(sassMiddleware({
 app.use(express.static(path.join(__dirname, 'public')));
 
 // interlink router (user)
-app.use('/', indexRouter); //Main page
-app.use('/introduce', introduceRouter); //Student Council introduce page
-app.use('/notice', noticeRouter); // Notice page
+app.use(indexRouter); //Main page
+app.use(introduceRouter); //Student Council introduce page
+app.use(noticeRouter); // Notice page
 //app.use('/commitment', commitmentRouter); //Commitment page
 
 // interlink router (manager)
