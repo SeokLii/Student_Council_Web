@@ -10,6 +10,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var introduceRouter = require('./routes/introduce');
 var noticeRouter = require('./routes/notice');
+
 var app = express();
 
 // view engine setup
