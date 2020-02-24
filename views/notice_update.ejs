@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+</head>
+<body>
+<h1><%= title %></h1>
+
+<form action="/notice/notice_read" method="post">
+    <table border="1">
+        <input type="hidden" name="number" value="<%=row.number%>"/>
+        <tr>
+            <td>작성자</td>
+            <td><input type="text" name="name" id="name" value="<%=row.name%>" required/></td>
+        </tr>
+        <tr>
+            <td>제목</td>
+            <td><input type="text" name="title" id="title" value="<%=row.source%>" required/></td>
+        </tr>
+        <tr>
+            <td>제목</td>
+            <td><input type="text" name="title" id="title" value="<%=row.title%>" required/></td>
+        </tr>
+        <tr>
+            <td>내용</td>
+            <td><textarea name="content" id="content" cols="30" rows="10" required><%=row.content%></textarea></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <button type="submit">글 수정</button>
+                <button type="submit">글 삭제</button>
+                <a href="/notice">목록</a>
+            </td>
+        </tr>
+    </table>
+</form>
+
+</body>
+</html>

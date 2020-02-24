@@ -13,22 +13,25 @@ router.get('/notice', function(req, res, next) {
 });
 
 /* writing page : only use Council*/
-router.get('/notice/notice_write', function(req,res,next){
+router.get('/notice_write', function(req,res,next){
     res.render('notice_write',{title : "게시판 글 쓰기"});
 });
 
-router.post('/notice/notice_write/write', function(req,res,next){
+router.post('/notice_write/write', function(req,res,next){
 
     var title = req.body.title;
     var content = req.body.content;
     var studentID = req.body.studentID;
     var name = req.body.name;
     var grade = req.body.grade;
-    var datas = [title,content, studentID, name, grade];
+    var source = req.body.source;
+    var date = req.body.date;
+    var imgPath = req.body.imgPath;
+    var datas = [title, content, studentID, name, grade, source, date, imgPath];
 
 
-    var sql = "insert into board(number, title, content, studentID, name, grade)" +
-                " values((select MAX(number)+1 from board a),?,?,?,?,?)";
+    var sql = "insert into board(number, title, content, studentID, name, grade, source, date, imgPath)" +
+                " values((select MAX(number)+1 from board a),?,?,?,?,?,?,?,?)";
                 //board a를 넣어서 오류 뮨제를 해결한다 : select MAX(number)+1 from board a = number의 번호를 최대값 +1 해주는 코드
     conn.query(sql,datas, function (err, rows) {
         if (err){console.error("err : " + err);}
@@ -38,7 +41,7 @@ router.post('/notice/notice_write/write', function(req,res,next){
 
 /*read page*/
 /*read page : for user*/
-router.get('/notice/notice_read/:number',function(req,res,next)
+router.get('/notice_read/:number',function(req,res,next)
 {
     var number = req.params.number;
     var sql = "select * from board where number=?";
@@ -55,8 +58,31 @@ router.get('/notice/notice_read/:number',function(req,res,next)
 
 
 /* Update page */
+router.post('/update',function(req,res,next)
+{
+  var title = req.body.title;
+  var content = req.body.content;
+  var studentID = req.body.studentID;
+  var name = req.body.name;
+  var grade = req.body.grade;
+  var source = req.body.source;
+  var datas = [title, content, studentID, name, grade, source];
 
 
+    var sql = "update board set name=? , title=?,content=?, modidate=now() where number=?";
+    conn.query(sql,datas, function(err,result)
+    {
+        if(err) console.error(err);
+        if(result.affectedRows == 0)
+        {
+            res.send("<script>alert('패스워드가 일치하지 않습니다.');history.back();</script>");
+        }
+        else
+        {
+            res.redirect('/board/read/'+idx);
+        }
+    });
+});
 /* Delete page */
 
 

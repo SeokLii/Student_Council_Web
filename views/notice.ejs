@@ -17,7 +17,8 @@
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-  <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Gamja+Flower|Hi+Melody|Nanum+Brush+Script|Nanum+Pen+Script&display=swap&subset=korean" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Gamja+Flower|Hi+Melody|Jua|Nanum+Brush+Script|Nanum+Pen+Script&display=swap&subset=korean" rel="stylesheet">
+
   <!-- Custom styles for this template -->
   <link href="stylesheets/clean-blog.min.css" rel="stylesheet"> <!--이름 변경 필요-->
 
@@ -58,8 +59,8 @@
     </div>
   </nav>
 
-  <!-- Page Header -->
-  <header class="masthead" style="background-image: url('images/Student Council introduce1.jpg')">
+  <!-- Psot Page -->
+  <header class="masthead" style="background-image: url('images/충북대학교 전경.png')">
     <div class="overlay"></div>
     <div class="container">
       <div class="row">
@@ -81,8 +82,9 @@
               <tr>
                   <th>번호</th>
                   <th>제목</th>
-                  <th>내용</th>
+                  <th>작성자</th>
                   <th>출처</th>
+                  <th>등록일</th>
               </tr>
             </thead>
             <tbody>
@@ -91,17 +93,18 @@
               {
                   var data = rows[i];
               %>
-              <tr>
-                  <td style ="text-align:center"><b><%=data.number%></b></td>
-                  <td><a style="text-decoration:none" href="/notice/notice_read/<%=data.number%>"> <b><%=data.title%></b></a></td>
-                  <td><%=data.content%></td>
-                  <td style ="text-align:center"><%=data.source%></td> <!--hover 밑줄 없애기 - css 정리 필요-->
+              <tr style ="text-align:center">
+                  <td><b><%= i+1%></b></td>
+                  <td><a style="text-decoration:none" href="/notice_read/<%=data.number%>"> <b><%=data.title%></b></a></td> <!--hover 밑줄 없애기 - css 정리 필요-->
+                  <td><%=data.name%></td>
+                  <td><%=data.source%></td>
+                  <td><%=data.date%></td>
               </tr>
               <%}%>
             </tbody>
           </table>
           <div class="clearfix">
-            <a class="btn btn-primary float-right" href="/notice/notice_write"><b>글쓰기</b></a>
+            <a class="btn btn-primary float-right" href="/notice_write"><b>글쓰기</b></a>
           </div>
     </div>
   <hr>

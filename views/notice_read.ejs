@@ -1,51 +1,174 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css'/>
-</head>
-<body>
-<h1><%= title %></h1>
+<html lang="en">
 
-<form action="/notice/notice_read" method="post">
-    <table border="1">
-        <input type="hidden" name="number" value="<%=row.number%>"/>
-        <tr>
-            <td>작성자</td>
-            <td><input type="text" name="name" id="name" value="<%=row.name%>" required/></td>
-        </tr>
-        <tr>
-            <td>제목</td>
-            <td><input type="text" name="title" id="title" value="<%=row.title%>" required/></td>
-        </tr>
-        <tr>
-            <td>내용</td>
-            <td><textarea name="content" id="content" cols="30" rows="10" required><%=row.content%></textarea></td>
-        </tr>
-        <tr>
-            <td>패스워드</td>
-            <td><input type="password" name="passwd" id="passwd" required/></td>
-        </tr>
-        <tr>
-            <td>변경일</td>
-            <td><%=row.modidate%></td>
-        </tr>
-        <tr>
-            <td>등록일</td>
-            <td><%=row.regdate%></td>
-        </tr>
-        <tr>
-            <td>조회수</td>
-            <td><%=row.hit%></td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <button type="submit">글 수정</button>
-                <a href="/board/list">목록</a>
-            </td>
-        </tr>
-    </table>
-</form>
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title><%= title %></title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Gamja+Flower|Hi+Melody|Jua|Nanum+Brush+Script|Nanum+Pen+Script&display=swap&subset=korean" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="stylesheets/clean-blog.min.css" rel="stylesheet"> <!--이름 변경 필요-->
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand" href="/" style="font-size: 30px">EROOM</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/" >홈</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/introduce">학생회 소개</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/notice">공지사항</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/">학생회 일정</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/rent">대여 관리</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/contact">로그인</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url('images/충북대학교 전경.png')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1>For Students</h1>
+            <span class="subheading">CBNU Related Notice</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container-fluid">
+    <form action="/notice_read" method="post">
+      <input type="hidden" name="number" value="<%=row.number%>"/>
+          <table class ="table table-bordered" border="1">
+            <thead style="text-align:center" class ="thead-dark">
+              <tr>
+                  <th colspan="10"><%=row.title%></th>
+              </tr>
+            </thead>
+            <tbody style="text-align:center">
+              <tr>
+                  <td style="width:5%">작성자</td>
+                  <td style="width:10%"><%=row.name%></td>
+                  <td style="width:5%">학번</td>
+                  <td style="width:10%"><%=row.studentID%></td>
+                  <td style="width:5%">학년</td>
+                  <td style="width:10%"><%=row.grade%></td>
+                  <td style="width:5%">출처</td>
+                  <td style="width:10%"><%=row.source%></td>
+                  <td style="width:5%">등록일</td>
+                  <td style="width:10%"><%=row.date%></td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+    <div class="container" style="padding:20px; font-family: 'Jua'">
+        <table class ="table table-bordered" border="1">
+          <thead style="text-align:center" class ="thead-dark">
+            <tr>
+                <th>내용</th>
+            </tr>
+          </thead>
+            <tr>
+              <td style="width:2px; height:120px; text-align:center; font-size:25px;">
+                <img style="width:80%;" src="<%=row.imgPath%>.jpg" /><br /><hr />
+                <%=row.content%>
+              </td>
+            </tr>
+        </table>
+    </div>
+        <div class="clearfix">
+          <a class="btn btn-primary float-right" href="/notice_write"><b>글 삭제</b></a>
+          <a class="btn btn-primary float-right" href="/notice_write"><b>글 수정</b></a>
+        </div>
+  </form>
+
+<hr style="border: 0;height: 3px; width:99%; background-color: #222222" />
+
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <ul class="list-inline text-center">
+            <li class="list-inline-item">
+              <a href="https://instagram.com/software_eroom?igshid=12vwurt8xamjq">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="https://github.com/SeokLii/EROOM-Website">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+          </ul>
+          <p class="copyright text-muted">(28644) 충북 청주시 서원구 충대로 1, 충북대학교 전자정보대학 소프트웨어학과 S4-1동(전자정보 3관) 109호<br />
+                                          TEL : 010-6583-5683 / 010-3302-9138<br />
+                                          Copyright © EROOM. All Rights Reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="JavaScripts/clean-blog.min.js"></script>
 
 </body>
+
 </html>

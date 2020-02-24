@@ -30,7 +30,8 @@ app.use(sassMiddleware({
   indentedSyntax: true, // true = .sass and false = .scss
   sourceMap: true
 }));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use('/', express.static(__dirname + '/public'));
+app.use('/notice_read', express.static(__dirname + '/public')); //static 파일 경로설정
 
 // interlink router (user)
 app.use(indexRouter); //Main page
