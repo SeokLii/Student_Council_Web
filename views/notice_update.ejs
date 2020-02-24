@@ -2,21 +2,56 @@
 <html>
 <head>
     <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title><%= title %></title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Gamja+Flower|Hi+Melody|Nanum+Brush+Script|Nanum+Pen+Script&display=swap&subset=korean" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="stylesheets/clean-blog.min.css" rel="stylesheet"> <!--이름 변경 필요-->
+
 </head>
 <body>
-<h1><%= title %></h1>
+<h1>게시글 작성</h1>
 
-<form action="/notice/notice_read" method="post">
+
+<form action="/notice_update/update" method="post">
+  <input type="hidden" name="number" value="<%=row.number%>"/>
     <table border="1">
-        <input type="hidden" name="number" value="<%=row.number%>"/>
         <tr>
             <td>작성자</td>
             <td><input type="text" name="name" id="name" value="<%=row.name%>" required/></td>
         </tr>
         <tr>
-            <td>제목</td>
-            <td><input type="text" name="title" id="title" value="<%=row.source%>" required/></td>
+            <td>학번</td>
+            <td><input type="text" name="studentID" id="studentID" value="<%=row.studentID%>" required/></td>
+        </tr>
+        <tr>
+            <td>학년</td>
+            <td><input type="text" name="grade" id="grade" value="<%=row.grade%>" required/></td>
+        </tr>
+        <tr>
+            <td>출처</td>
+            <td><input type="text" name="source" id="source" value="<%=row.source%>" required/></td>
+        </tr>
+        <tr>
+            <td>등록날짜</td>
+            <td><input type="text" name="date" id="date" value="<%=row.date%>" required/></td>
+        </tr>
+        <tr>
+            <td>이미지 경로 등록<br />
+               ex)images/notice_img/파일 이름</td>
+            <td><input type="text" name="imgPath" id="imgPath" value="<%=row.imgPath%>"/></td>
         </tr>
         <tr>
             <td>제목</td>
@@ -28,13 +63,12 @@
         </tr>
         <tr>
             <td colspan="2">
-                <button type="submit">글 수정</button>
-                <button type="submit">글 삭제</button>
-                <a href="/notice">목록</a>
+                <button type="submit">수정하기</button>
             </td>
         </tr>
     </table>
 </form>
+
 
 </body>
 </html>

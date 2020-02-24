@@ -31,7 +31,9 @@ app.use(sassMiddleware({
   sourceMap: true
 }));
 app.use('/', express.static(__dirname + '/public'));
+app.use('/notice', express.static(__dirname + '/public')); //static 파일 경로설정
 app.use('/notice_read', express.static(__dirname + '/public')); //static 파일 경로설정
+app.use('/notice_update', express.static(__dirname + '/public')); //static 파일 경로설정
 
 // interlink router (user)
 app.use(indexRouter); //Main page

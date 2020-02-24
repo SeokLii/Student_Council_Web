@@ -76,7 +76,7 @@
 
   <!-- Main Content -->
   <div class="container-fluid">
-    <div style="font-family: 'Nanum Pen Script'; font-size: 70px; padding-bottom:30px; font-weight:normal">학생회 공지사항</div>
+    <div class="no_header">학생회 공지사항</div>
           <table class ="table table-bordered table-hover " border="1">
             <thead style="text-align:center" class ="thead-dark">
               <tr>
@@ -88,11 +88,14 @@
               </tr>
             </thead>
             <tbody>
-              <%
-              for(var i=0; i<rows.length; i++)
-              {
-                  var data = rows[i];
-              %>
+               <%
+                 for(var i = (page * page_num) - page_num; i < (page * page_num); i++) { <!-- -->
+                   if(i > length){
+                     i++;
+                   }
+                   else{
+                   var data = rows[i]
+               %>
               <tr style ="text-align:center">
                   <td><b><%= i+1%></b></td>
                   <td><a style="text-decoration:none" href="/notice_read/<%=data.number%>"> <b><%=data.title%></b></a></td> <!--hover 밑줄 없애기 - css 정리 필요-->
@@ -100,10 +103,18 @@
                   <td><%=data.source%></td>
                   <td><%=data.date%></td>
               </tr>
-              <%}%>
+              <%}
+            }%>
             </tbody>
           </table>
           <div class="clearfix">
+            <%
+           for(var j = 0; j < rows.length / page_num; j++){
+           %>
+           [<a href="/notice/<%= j + 1 %>"><%= j + 1 %></a>]
+           <%
+           }
+           %>
             <a class="btn btn-primary float-right" href="/notice_write"><b>글쓰기</b></a>
           </div>
     </div>
@@ -120,14 +131,6 @@
                 <span class="fa-stack fa-lg">
                   <i class="fas fa-circle fa-stack-2x"></i>
                   <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
-                </span>
-              </a>
-            </li>
-            <li class="list-inline-item">
-              <a href="#">
-                <span class="fa-stack fa-lg">
-                  <i class="fas fa-circle fa-stack-2x"></i>
-                  <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
                 </span>
               </a>
             </li>

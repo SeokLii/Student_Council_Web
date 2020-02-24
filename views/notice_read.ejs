@@ -85,16 +85,21 @@
             </thead>
             <tbody style="text-align:center">
               <tr>
-                  <td style="width:5%">작성자</td>
-                  <td style="width:10%"><%=row.name%></td>
-                  <td style="width:5%">학번</td>
-                  <td style="width:10%"><%=row.studentID%></td>
-                  <td style="width:5%">학년</td>
-                  <td style="width:10%"><%=row.grade%></td>
-                  <td style="width:5%">출처</td>
-                  <td style="width:10%"><%=row.source%></td>
-                  <td style="width:5%">등록일</td>
-                  <td style="width:10%"><%=row.date%></td>
+                  <td style="width:2%">작성자</td>
+                  <td colspan="3" style="width:5%"><%=row.name%></td>
+
+              </tr>
+              <tr>
+                <td style="width:2%; border-right: 3px">학번</td>
+                <td style="width:5%"><%=row.studentID%></td>
+                <td style="width:2%">학년</td>
+                <td style="width:5%"><%=row.grade%></td>
+              </tr>
+              <tr>
+                <td style="width:2%">출처</td>
+                <td style="width:5%"><%=row.source%></td>
+                <td style="width:2%">등록일</td>
+                <td style="width:5%"><%=row.date%></td>
               </tr>
             </tbody>
           </table>
@@ -107,16 +112,18 @@
             </tr>
           </thead>
             <tr>
-              <td style="width:2px; height:120px; text-align:center; font-size:25px;">
-                <img style="width:80%;" src="<%=row.imgPath%>.jpg" /><br /><hr />
+              <td class="no_content">
+                <img style="width:80%;" src="<%=row.imgPath%>" /><br />
+                <% var path = row.imgPath; console.log(path);
+                if(path){ %> <hr /><% }%> <!--null check시 javascript는 !path 부정문으로 체크한다.-->
                 <%=row.content%>
               </td>
             </tr>
         </table>
     </div>
         <div class="clearfix">
-          <a class="btn btn-primary float-right" href="/notice_write"><b>글 삭제</b></a>
-          <a class="btn btn-primary float-right" href="/notice_write"><b>글 수정</b></a>
+          <a class="btn btn-primary float-right" href="/notice_delete"><b>글 삭제</b></a>
+          <a class="btn btn-primary float-right" href="/notice_update/<%=row.number%>"><b>글 수정</b></a>
         </div>
   </form>
 
@@ -134,14 +141,6 @@
                 <span class="fa-stack fa-lg">
                   <i class="fas fa-circle fa-stack-2x"></i>
                   <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
-                </span>
-              </a>
-            </li>
-            <li class="list-inline-item">
-              <a href="#">
-                <span class="fa-stack fa-lg">
-                  <i class="fas fa-circle fa-stack-2x"></i>
-                  <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
                 </span>
               </a>
             </li>

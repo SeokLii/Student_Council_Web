@@ -22,7 +22,7 @@
 
 </head>
 <body>
-<h1><%= title %></h1>
+<h1>게시글 작성</h1>
 
 
 <form action="/notice_write/write" method="post">
@@ -45,12 +45,13 @@
         </tr>
         <tr>
             <td>등록날짜</td>
-            <td><input type="text" name="date" id="date" required/></td>
+            <td><input type="text" name="date" id="date" placeholder="2020-00-00" required/></td>
         </tr>
         <tr>
             <td>이미지 경로 등록<br />
-               ex)images/notice_img/파일 이름</td>
-            <td><input type="text" name="imgPath" id="imgPath" required/></td>
+               ex)images/notice_img/파일 이름.jpg or .png<br />
+               png인지 jpg인지 확인해서 기입</td>
+            <td><input type="text" name="imgPath" id="imgPath" placeholder="images/notice_img/"/></td>
         </tr>
         <tr>
             <td>제목</td>
