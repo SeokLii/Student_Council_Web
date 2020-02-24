@@ -43,7 +43,7 @@
             <a class="nav-link" href="/introduce">학생회 소개</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/notice">공지사항</a>
+            <a class="nav-link" href="/notice/1">공지사항</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/">학생회 일정</a>
@@ -107,21 +107,23 @@
             }%>
             </tbody>
           </table>
-          <div class="clearfix">
+          <div style="text-align:center">
             <%
            for(var j = 0; j < rows.length / page_num; j++){
            %>
-           [<a href="/notice/<%= j + 1 %>"><%= j + 1 %></a>]
+           <a class="pagingButton" href="/notice/<%= j + 1 %>"><%= j + 1 %></a>
            <%
            }
            %>
-            <a class="btn btn-primary float-right" href="/notice_write"><b>글쓰기</b></a>
           </div>
+    </div>
+    <div class="clearfix">
+      <a class="btn btn-primary float-right" href="/notice_write"><b>글쓰기</b></a>
     </div>
   <hr>
 
   <!-- Footer -->
-  <footer>
+  <footer class="footer">
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">

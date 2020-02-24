@@ -93,8 +93,23 @@ router.post('/notice_update/update',function(req,res,next)
       else{res.redirect('/notice/1');}
     });
 });
-/* Delete page */
 
+/* Delete page */
+router.get('/notice_delete/:number', function(req,res,next){ //삭제
+
+    var number = req.params.number;
+    var sql = "delete from board where number = ?";
+    conn.query(sql,number, function (err, rows) {
+        if (err){
+          console.log(number);
+          console.error("err : " + err);
+      }
+        else{
+          console.log(number);
+          res.redirect('/notice/1');
+        }
+    });
+});
 
 
 module.exports = router;
