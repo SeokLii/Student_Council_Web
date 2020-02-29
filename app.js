@@ -5,18 +5,40 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var sassMiddleware = require('node-sass-middleware');
 var favicon = require('serve-favicon');
+var bodyParser = require('body-parser');
+var session = require('express-session');
+var MySQLStore = require('express-mysql-session')(session);
+var flash = require('connect-flash'); // session 관련해서 사용됨. 로그인 실패시 session등 클리어하는 기능으로 보임.
 
+//router
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var introduceRouter = require('./routes/introduce');
 var noticeRouter = require('./routes/notice');
+var logIORouter = require('./routes/logIO');
 
 var app = express();
+
+//session
+app.use(session({
+  
+  resave : false,
+  saveUninitialized : true,
+  store: new MySQLStore({
+    host: 'localhost',
+    port: '3306',
+    user: 'root',
+    database: 'my_db'
+  }) //database 에 대한 정보를 넘겨준다. 세션을 사용할 때  mysql에 접근할 수 있게
+}))
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-
 //serve-favicon
 app.use(favicon(path.join(__dirname, 'public/images', 'favicon.ico'))); //
 
@@ -30,15 +52,25 @@ app.use(sassMiddleware({
   indentedSyntax: true, // true = .sass and false = .scss
   sourceMap: true
 }));
+
+//passport 미들웨어 장착
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+app.use(passport.initialize()); //초기화, passport 동작
+app.use(passport.session()); //로그인 지속을 위한 세션 사용, passport.deserializeUser 실행
+app.use(flash());
+
+//static 파일 경로설정
 app.use('/', express.static(__dirname + '/public'));
-app.use('/notice', express.static(__dirname + '/public')); //static 파일 경로설정
-app.use('/notice_read', express.static(__dirname + '/public')); //static 파일 경로설정
-app.use('/notice_update', express.static(__dirname + '/public')); //static 파일 경로설정
+app.use('/notice', express.static(__dirname + '/public'));
+app.use('/notice_read', express.static(__dirname + '/public'));
+app.use('/notice_update', express.static(__dirname + '/public'));
 
 // interlink router (user)
 app.use(indexRouter); //Main page
 app.use(introduceRouter); //Student Council introduce page
 app.use(noticeRouter); // Notice page
+app.use(logIORouter); //login page
 //app.use('/commitment', commitmentRouter); //Commitment page
 
 // interlink router (manager)

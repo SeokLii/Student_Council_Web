@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+  </head>
+  <body>
+    <form action="/login" method="post">
+        <table border="1">
+            <tr>
+                <td>ID</td>
+                <td><input type="text" name="userid" id="userid" required/></td>
+            </tr>
+            <tr>
+                <td>pw</td>
+                <td><input type="text" name="password" id="password" required/></td>
+            </tr>
+            <td colspan="2">
+                <button type="submit">로그인</button>
+            </td>
+        </table>
+    </form>
+  </body>
+</html>

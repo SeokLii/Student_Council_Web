@@ -9,12 +9,16 @@ router.get('/notice/:page', function(req, res, next) { //메인에서 page:1로 
   var page = req.params.page;
   var sql = "select * from board";
   conn.query(sql, function (err, rows) {
-    if (err) {
-      console.error("err : " + err);
+    if (err) console.error("err : " + err);
+    if (req.user == null){
+    if (!req.user) res.render('notice', {logIO_L : 'login', logIO_T : '로그인', rows: rows, page: page, length: rows.length-1, page_num: 10, pass: true});
+    else res.render('notice', {logIO_L : 'logout', logIO_T : '로그아웃', rows: rows, page: page, length: rows.length-1, page_num: 10, pass: true});
+  } else{
+    if(req.user.id == "k1nder" && req.user.password == "asd123"){
+    if (!req.user) res.render('noticeDev', {logIO_L : 'login', logIO_T : '로그인', rows: rows, page: page, length: rows.length-1, page_num: 10, pass: true});
+    else res.render('noticeDev', {logIO_L : 'logout', logIO_T : '로그아웃', rows: rows, page: page, length: rows.length-1, page_num: 10, pass: true});
     }
-    else{
-      res.render('notice', { title: '제8대 소프트웨어학과 이룸학생회', rows: rows, page: page, length: rows.length-1, page_num: 10, pass: true});
-    }
+  }
   });
 });
 
@@ -51,10 +55,18 @@ router.get('/notice_read/:number',function(req,res,next) //:munber로 해당 페
 {
     var number = req.params.number;
     var sql = "select * from board where number=?";
-    conn.query(sql,[number], function(err,row)
+    conn.query(sql,[number], function(err,rows)
     {
-        if(err) console.error(err);
-        res.render('notice_read', {title:"글 상세", row:row[0]});
+      if (err) console.error("err : " + err);
+      if (req.user == null){
+      if (!req.user) res.render('notice_read', {logIO_L : 'login', logIO_T : '로그인', row:rows[0]});
+      else res.render('notice_read', {logIO_L : 'logout', logIO_T : '로그아웃', row:rows[0]});
+    } else{
+      if(req.user.id == "k1nder" && req.user.password == "asd123"){
+      if (!req.user) res.render('notice_readDev', {logIO_L : 'login', logIO_T : '로그인', row:rows[0]});
+      else res.render('notice_readDev', {logIO_L : 'logout', logIO_T : '로그아웃', row:rows[0]});
+      }
+    }
     });
 });
 

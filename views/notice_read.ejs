@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title><%= title %></title>
+  <title>제8대 소프트웨어학과 이룸학생회</title>
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -51,7 +51,7 @@
             <a class="nav-link" href="/rent">대여 관리</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/contact">로그인</a>
+            <a class="nav-link" href="/<%= logIO_L %>"><%= logIO_T %></a>
           </li>
         </ul>
       </div>
@@ -121,10 +121,6 @@
             </tr>
         </table>
     </div>
-        <div class="clearfix">
-          <a class="btn btn-primary float-right" href="/notice_delete/<%=row.number%>"><b>글 삭제</b></a>
-          <a class="btn btn-primary float-right" href="/notice_update/<%=row.number%>"><b>글 수정</b></a>
-        </div>
   </form>
 
 <hr style="border: 0;height: 3px; width:99%; background-color: #222222" />
