@@ -16,18 +16,21 @@ var usersRouter = require('./routes/users');
 var introduceRouter = require('./routes/introduce');
 var noticeRouter = require('./routes/notice');
 var logIORouter = require('./routes/logIO');
+var calendarIORouter = require('./routes/calendar');
+var rentRouter = require('./routes/rent');
 
 var app = express();
 
 //session
 app.use(session({
-  
+  secret : "",
   resave : false,
   saveUninitialized : true,
   store: new MySQLStore({
     host: 'localhost',
     port: '3306',
     user: 'root',
+    password: '',
     database: 'my_db'
   }) //database 에 대한 정보를 넘겨준다. 세션을 사용할 때  mysql에 접근할 수 있게
 }))
@@ -71,6 +74,8 @@ app.use(indexRouter); //Main page
 app.use(introduceRouter); //Student Council introduce page
 app.use(noticeRouter); // Notice page
 app.use(logIORouter); //login page
+app.use(calendarIORouter); //calendar page
+app.use(rentRouter); //rent page
 //app.use('/commitment', commitmentRouter); //Commitment page
 
 // interlink router (manager)

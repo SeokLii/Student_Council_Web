@@ -45,7 +45,7 @@
             <a class="nav-link" href="/notice/1">공지사항</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/">학생회 일정</a>
+            <a class="nav-link" href="/calendar">학생회 일정</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/rent">대여 관리</a>
@@ -113,17 +113,47 @@
           </thead>
             <tr>
               <td class="no_content">
-                <img style="width:80%;" src="<%=row.imgPath%>" /><br />
-                <% var path = row.imgPath; console.log(path);
-                if(path){ %> <hr /><% }%> <!--null check시 javascript는 !path 부정문으로 체크한다.-->
-                <%=row.content%>
+                <%
+                  var pathData = new Array();
+                  var j = 0;
+                  if(row.imgPath != null)
+                  {
+                    <!--DB의 이미지 경로 추출하는 과정-->
+                      for (var i = 0; i < row.imgPath.length; i++)
+                      {
+                          if (row.imgPath[i] == " "){
+                            j++;
+                          }
+                          else{
+                              if (pathData[j] == null){<!--경로명 앞, undefine 방지-->
+                               pathData[j] = row.imgPath[i];
+                                }
+                               else{
+                                 pathData[j] = pathData[j] + row.imgPath[i];
+                               }
+                          }
+                      }
+                  }
+                  if(pathData.length != 0)
+                  {
+                    for (var i =0; i <= j; i++)
+                    {
+                %>
+                    <img style="width:80%;" src="/images/notice_img/<%=pathData[i]%>" /><br />
+                <%
+                    }
+                  }
+                %>
+                  <% var path = row.imgPath;
+                  if(path){ %> <hr /><% }%> <!--null check시 javascript는 !path 부정문으로 체크한다.-->
+                  <%=row.content%>
               </td>
             </tr>
         </table>
     </div>
         <div class="clearfix">
-          <a class="btn btn-primary float-right" href="/notice_delete/<%=row.number%>"><b>글 삭제</b></a>
-          <a class="btn btn-primary float-right" href="/notice_update/<%=row.number%>"><b>글 수정</b></a>
+          <a class="btn btn-dark float-right" href="/notice_delete/<%=row.number%>"><b>글 삭제</b></a>
+          <a class="btn btn-dark float-right" href="/notice_update/<%=row.number%>"><b>글 수정</b></a>
         </div>
   </form>
 

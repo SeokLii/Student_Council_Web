@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title><%= title %></title>
+    <title>제8대 소프트웨어학과 이룸학생회</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title><%= title %></title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -25,7 +24,7 @@
 <h1>게시글 작성</h1>
 
 
-<form action="/notice_update/update" method="post">
+<form action="/notice_update/update" method="post" enctype="multipart/form-data">
   <input type="hidden" name="number" value="<%=row.number%>"/>
     <table border="1">
         <tr>
@@ -45,21 +44,20 @@
             <td><input type="text" name="source" id="source" value="<%=row.source%>" required/></td>
         </tr>
         <tr>
-            <td>등록날짜</td>
-            <td><input type="text" name="date" id="date" value="<%=row.date%>" required/></td>
-        </tr>
-        <tr>
-            <td>이미지 경로 등록<br />
-               ex)images/notice_img/파일 이름</td>
-            <td><input type="text" name="imgPath" id="imgPath" value="<%=row.imgPath%>"/></td>
-        </tr>
-        <tr>
             <td>제목</td>
             <td><input type="text" name="title" id="title" value="<%=row.title%>" required/></td>
         </tr>
         <tr>
             <td>내용</td>
             <td><textarea name="content" id="content" cols="30" rows="10" required><%=row.content%></textarea></td>
+        </tr>
+        <tr>
+            <td>이미지</td>
+            <td><input type="file" name="userfile" id="userfile" multiple /></td>
+        </tr>
+        <tr>
+            <td>이미지 삭제</td>
+            <td><input style="width: 20px;	height: 20px;" type="checkbox" name="delete" value="delete"></td>
         </tr>
         <tr>
             <td colspan="2">

@@ -9,7 +9,7 @@ var router = express.Router(); //라우터 분리
 var app = express();
 
 
-// parse application/x-www-form-urlencoded
+// parse
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -20,13 +20,15 @@ app.use(passport.initialize()); //초기화, passport 동작
 app.use(passport.session()); //로그인 지속을 위한 세션 사용, passport.deserializeUser 실행
 
 //Session 관리
-passport.serializeUser(function(user, done) { //로그인 성공하면 세션에 저장
+//로그인 성공하면 세션에 저장
+passport.serializeUser(function(user, done) {
   //console.log('serialize');
   done(null, user.id);
 });
-passport.deserializeUser(function(id, done) { //로그인 되어있을 때, 모든 페이지 접근 시 발생, 정보를 찾아 http req로 정보 리턴한다.
+//로그인 되어있을 때, 모든 페이지 접근 시 발생, 정보를 찾아 http req로 정보 리턴한다.
+passport.deserializeUser(function(id, done) {
   var sql = "select * from user where id = ?"
-  conn.query(sql, [id], function (err, rows) {//
+  conn.query(sql, [id], function (err, rows) {
     if (err) return done(err, false);
     if (!rows[0]) return done(err, false);
     return done(null, rows[0]);
@@ -34,7 +36,8 @@ passport.deserializeUser(function(id, done) { //로그인 되어있을 때, 모�
 });
 
 //LocalStrategy
-passport.use('local', new LocalStrategy({ //비밀번호 확인, 비번 아디 부분 자세히 추가하기
+//비밀번호 확인하고 맞으면 deserializeUser로 정보 보내서 저장
+passport.use('local', new LocalStrategy({
   usernameField: 'userid',
   passwordField: 'password',
   passReqToCallback : true
@@ -96,8 +99,7 @@ passport.use('local', new LocalStrategy({ //비밀번호 확인, 비번 아디 �
 //));
 
 router.get('/login', function(req, res, next){
-   res.render('login',{ title: '제8대 소프트웨어학과 이룸학생회'});
-   console.log('here1');
+   res.render('login');
 });
 
 //로그인 성공과 실패 시 Routing
@@ -107,28 +109,26 @@ router.post('/login', passport.authenticate('local', {
   // 인증 실패 시 401 리턴, {} -> 인증 스트레티지
   // failureRedirect, successRedirect -> callback function or redirect  두가지 방법
   function (req, res) {
-    console.log('here2');
     res.redirect('/login_success');
   });
 
 router.get('/login_success', function(req, res, next){
-   res.render('index',{ logIO_L : 'logout', logIO_T : '로그아웃' });
+  var sql = "select * from board";
+  conn.query(sql, function (err, rows) {
+  res.render('index', { logIO_L : 'logout', logIO_T : '로그아웃', rows : rows, length : rows.length-1, pass: true, pagenum: rows.length-16 });
+  });
 });
 
 router.get('/logout', function(req, res, next){
    req.logout();
-   // req.session.destroy(
-   //   function (err) {
-   //       if (err) {
-   //           console.log('세션 삭제시 에러');
-   //           return;
-   //       console.log('세션 삭제 성공');
-   //     }
-   //   })
-   res.render('index',{ logIO_L : 'login', logIO_T : '로그인' });
+   req.session.save(function(err){
+     if (err) return console.log(err);
+     var sql = "select * from board";
+     conn.query(sql, function (err, rows) {
+    res.render('index', { logIO_L : 'login', logIO_T : '로그인', rows: rows, length: rows.length-1, pass: true, pagenum: rows.length-16 });
+    });
+   });
 });
-
-
 
 
 

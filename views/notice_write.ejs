@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title><%= title %></title>
+    <title>제8대 소프트웨어학과 이룸학생회</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title><%= title %></title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -25,33 +24,23 @@
 <h1>게시글 작성</h1>
 
 
-<form action="/notice_write/write" method="post">
+<form action="/notice_write/write" method="post" enctype="multipart/form-data">
     <table border="1">
         <tr>
             <td>작성자</td>
-            <td><input type="text" name="name" id="name" required/></td>
+            <td><input type="text" name="name" id="name" value="<%=data[0]%>" required/></td>
         </tr>
         <tr>
             <td>학번</td>
-            <td><input type="text" name="studentID" id="studentID" required/></td>
+            <td><input type="text" name="studentID" id="studentID" value="<%=data[1]%>" required/></td>
         </tr>
         <tr>
             <td>학년</td>
-            <td><input type="text" name="grade" id="grade" required/></td>
+            <td><input type="text" name="grade" id="grade" value="<%=data[2]%>" required/></td>
         </tr>
         <tr>
             <td>출처</td>
             <td><input type="text" name="source" id="source" required/></td>
-        </tr>
-        <tr>
-            <td>등록날짜</td>
-            <td><input type="text" name="date" id="date" placeholder="2020-00-00" required/></td>
-        </tr>
-        <tr>
-            <td>이미지 경로 등록<br />
-               ex)images/notice_img/파일 이름.jpg or .png<br />
-               png인지 jpg인지 확인해서 기입</td>
-            <td><input type="text" name="imgPath" id="imgPath" placeholder="images/notice_img/"/></td>
         </tr>
         <tr>
             <td>제목</td>
@@ -62,6 +51,9 @@
             <td><textarea name="content" id="content" cols="30" rows="10" required></textarea></td>
         </tr>
         <tr>
+            <td>이미지</td>
+            <td><input type="file" name="userfile" id="userfile" multiple /></td>
+        </tr>
             <td colspan="2">
                 <button type="submit">글쓰기</button>
             </td>

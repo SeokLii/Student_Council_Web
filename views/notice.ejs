@@ -46,7 +46,7 @@
             <a class="nav-link" href="/notice/1">공지사항</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/">학생회 일정</a>
+            <a class="nav-link" href="/calendar">학생회 일정</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/rent">대여 관리</a>
@@ -80,7 +80,7 @@
           <table class ="table table-bordered table-hover " border="1">
             <thead style="text-align:center" class ="thead-dark">
               <tr>
-                  <th>번호</th>
+                  <th>분류</th>
                   <th>제목</th>
                   <th>작성자</th>
                   <th>출처</th>
@@ -89,22 +89,34 @@
             </thead>
             <tbody>
                <%
-                 for(var i = (page * page_num) - page_num; i < (page * page_num); i++) { <!-- -->
-                   if(i > length){
-                     i++;
-                   }
-                   else{
-                   var data = rows[i]
+                 if ((length - (page * page_num)) > 0){
+                   for(var i = (length - ((page-1)*page_num)); i > (length - (page * page_num)); i--)
+                    {
+                     var data = rows[i];
                %>
               <tr style ="text-align:center">
-                  <td><b><%= i+1%></b></td>
+                  <td><b>NOTICE</b></td>
                   <td><a style="text-decoration:none" href="/notice_read/<%=data.number%>"> <b><%=data.title%></b></a></td> <!--hover 밑줄 없애기 - css 정리 필요-->
                   <td><%=data.name%></td>
                   <td><%=data.source%></td>
                   <td><%=data.date%></td>
               </tr>
               <%}
-            }%>
+            }
+            else{
+                    for(var i = (length - ((page-1)*page_num)); i >= 0; i--)
+                     {
+                      var data = rows[i];
+                %>
+               <tr style ="text-align:center">
+                   <td><b>NOTICE</b></td>
+                   <td><a style="text-decoration:none" href="/notice_read/<%=data.number%>"> <b><%=data.title%></b></a></td> <!--hover 밑줄 없애기 - css 정리 필요-->
+                   <td><%=data.name%></td>
+                   <td><%=data.source%></td>
+                   <td><%=data.date.format("yy")%></td>
+               </tr>
+               <%}
+             }%>
             </tbody>
           </table>
           <div style="text-align:center">
