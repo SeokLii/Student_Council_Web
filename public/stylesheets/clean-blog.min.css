@@ -11,7 +11,7 @@
   padding: 50px;
   margin-bottom: 50px;
 }
-.profile{
+/* .profile{
     width: 250px;
     height: 250px;
     margin-left: 200px;
@@ -23,7 +23,7 @@
     width: 100%;
    height: 99.6%;
    object-fit: cover;
-}
+} */
 
 .container-fluid{
   font-weight:bold;
