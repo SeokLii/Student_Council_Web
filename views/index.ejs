@@ -59,7 +59,7 @@
   </nav>
 
   <!-- Page Header -->
-  <header class="masthead" style="background-image: url('images/about-bg.jpg')">
+  <header class="masthead" style="background-image: url('images/main.jpg'); background-size: 100% 100%;">
     <div class="overlay"></div>
     <div class="container">
       <div class="row">
@@ -91,16 +91,21 @@
             </thead>
             <tbody>
             <%
-              for(var i = length; i > pagenum; i--)
+              for(var i = 0; i < 10; i++)
               {
-                var data = rows[i];
-                %>
-                <tr style ="text-align:center">
-                    <td><a style="text-decoration:none" href="/notice_read/<%=data.number%>"> <b><%=data.title%></b></a></td> <!--hover 밑줄 없애기 - css 정리 필요-->
-                    <td><%=data.source%></td>
-                    <td><%=data.date%></td>
-                </tr>
-            <%}%>
+                if(length - i <= 0){
+                  i++;
+                }
+                else{
+                  var data = rows[length - i];
+                  %>
+                  <tr style ="text-align:center">
+                      <td><a style="text-decoration:none" href="/notice_read/<%=data.number%>"> <b><%=data.title%></b></a></td> <!--hover 밑줄 없애기 - css 정리 필요-->
+                      <td><%=data.source%></td>
+                      <td><%=data.date%></td>
+                  </tr>
+                <%}
+              }%>
           </tbody>
         </table>
         <hr>

@@ -10,8 +10,8 @@ router.get('/', function(req, res, next) {
   conn.query(sql, function (err, rows) {
     if (err) console.error("err : " + err);
     console.log(rows.length);
-    if (!req.user) res.render('index', { logIO_L : 'login', logIO_T : '로그인', rows: rows, length: rows.length-1, pagenum: rows.length-11, pass: true });
-    else res.render('index', { logIO_L : 'logout', logIO_T : '로그아웃', rows : rows, length : rows.length-1, pagenum: rows.length-11, pass: true });
+    if (!req.user) res.render('index', { logIO_L : 'login', logIO_T : '로그인', rows: rows, length: rows.length-1, pagenum: rows.length-16, pass: true });
+    else res.render('index', { logIO_L : 'logout', logIO_T : '로그아웃', rows : rows, length : rows.length-1, pagenum: rows.length-16, pass: true });
   });
 });
 

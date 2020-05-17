@@ -21,12 +21,12 @@ router.get('/notice/:page', function(req, res, next) { //메인에서 page:1로 
   conn.query(sql, function (err, rows) {
     if (err) console.error("err : " + err);
     if (req.user == null){
-    if (!req.user) res.render('notice', {logIO_L : 'login', logIO_T : '로그인', rows: rows, page: page, length: rows.length-1, page_num: 15, pass: true});
-    else res.render('notice', {logIO_L : 'logout', logIO_T : '로그아웃', rows: rows, page: page, length: rows.length-1, page_num: 15, pass: true});
+    if (!req.user) res.render('notice', {logIO_L : 'login', logIO_T : '로그인', rows: rows, page: page, length: rows.length-1, page_num: 20, pass: true});
+    else res.render('notice', {logIO_L : 'logout', logIO_T : '로그아웃', rows: rows, page: page, length: rows.length-1, page_num: 20, pass: true});
   } else{
     if((req.user.id == "k1nder" && req.user.password == "asd123")||(req.user.id == "jung2da" && req.user.password == "jjung2259")||(req.user.id == "vouobb" && req.user.password == "dbwjd0416")){
-    if (!req.user) res.render('noticeDev', {logIO_L : 'login', logIO_T : '로그인', rows: rows, page: page, length: rows.length-1, page_num: 15, pass: true});
-    else res.render('noticeDev', {logIO_L : 'logout', logIO_T : '로그아웃', rows: rows, page: page, length: rows.length-1, page_num: 15, pass: true});
+    if (!req.user) res.render('noticeDev', {logIO_L : 'login', logIO_T : '로그인', rows: rows, page: page, length: rows.length-1, page_num: 20, pass: true});
+    else res.render('noticeDev', {logIO_L : 'logout', logIO_T : '로그아웃', rows: rows, page: page, length: rows.length-1, page_num: 20, pass: true});
     }
   }
   });

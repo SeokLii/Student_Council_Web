@@ -99,7 +99,8 @@ passport.use('local', new LocalStrategy({
 //));
 
 router.get('/login', function(req, res, next){
-   res.render('login');
+    if (!req.user) res.render('login', {logIO_L : 'login', logIO_T : '로그인'});
+    else res.render('login', {logIO_L : 'logout', logIO_T : '로그아웃'});
 });
 
 //로그인 성공과 실패 시 Routing
@@ -113,9 +114,9 @@ router.post('/login', passport.authenticate('local', {
   });
 
 router.get('/login_success', function(req, res, next){
-  var sql = "select * from board";
+  var sql = "select number, title, content, studentID, name, grade, source, date_format(date, '%Y-%m-%d')date, imgPath from board";
   conn.query(sql, function (err, rows) {
-  res.render('index', { logIO_L : 'logout', logIO_T : '로그아웃', rows : rows, length : rows.length-1, pass: true, pagenum: rows.length-16 });
+  res.render('index', { logIO_L : 'logout', logIO_T : '로그아웃', rows : rows, length : rows.length-1, pagenum: rows.length-16, pass: true });
   });
 });
 
@@ -123,9 +124,10 @@ router.get('/logout', function(req, res, next){
    req.logout();
    req.session.save(function(err){
      if (err) return console.log(err);
-     var sql = "select * from board";
+     var sql = "select number, title, content, studentID, name, grade, source, date_format(date, '%Y-%m-%d')date, imgPath from board";
      conn.query(sql, function (err, rows) {
-    res.render('index', { logIO_L : 'login', logIO_T : '로그인', rows: rows, length: rows.length-1, pass: true, pagenum: rows.length-16 });
+     res.render('index', { logIO_L : 'login', logIO_T : '로그인', rows: rows, length: rows.length-1, pagenum: rows.length-16, pass: true });
+
     });
    });
 });

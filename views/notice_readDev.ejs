@@ -19,7 +19,7 @@
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
   <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Gamja+Flower|Hi+Melody|Jua|Nanum+Brush+Script|Nanum+Pen+Script&display=swap&subset=korean" rel="stylesheet">
   <!-- Custom styles for this template -->
-  <link href="stylesheets/clean-blog.min.css" rel="stylesheet"> <!--이름 변경 필요-->
+  <link href="stylesheets/notice_read.css" rel="stylesheet"> <!--이름 변경 필요-->
 
 </head>
 
@@ -74,7 +74,7 @@
   </header>
 
   <!-- Main Content -->
-  <div class="container-fluid">
+  <div class="container-fluid col-md-7" style="text-align: center;" id="read_info">
     <form action="/notice_read" method="post">
       <input type="hidden" name="number" value="<%=row.number%>"/>
           <table class ="table table-bordered" border="1">
@@ -104,7 +104,7 @@
             </tbody>
           </table>
     </div>
-    <div class="container" style="padding:20px; font-family: 'Jua'">
+    <div class="container col-md-5" style="text-align: center; padding:20px;" id="read_content">
         <table class ="table table-bordered" border="1">
           <thead style="text-align:center" class ="thead-dark">
             <tr>
@@ -152,8 +152,8 @@
         </table>
     </div>
         <div class="clearfix">
-          <a class="btn btn-dark float-right" href="/notice_delete/<%=row.number%>"><b>글 삭제</b></a>
-          <a class="btn btn-dark float-right" href="/notice_update/<%=row.number%>"><b>글 수정</b></a>
+          <a class="btn btn-dark float-right" id="btn_delete" href="/notice_delete/<%=row.number%>"><b>글 삭제</b></a>
+          <a class="btn btn-dark float-right" id="btn_update" href="/notice_update/<%=row.number%>"><b>글 수정</b></a>
         </div>
   </form>
 

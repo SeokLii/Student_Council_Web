@@ -20,10 +20,9 @@
   <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Gamja+Flower|Hi+Melody|Jua|Nanum+Brush+Script|Nanum+Pen+Script&display=swap&subset=korean" rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link href="stylesheets/clean-blog.min.css" rel="stylesheet"> <!--이름 변경 필요-->
+  <link href="stylesheets/notice.css" rel="stylesheet"> <!--이름 변경 필요-->
 
 </head>
-
 <body>
 
   <!-- Navigation -->
@@ -31,6 +30,7 @@
     <div class="container">
       <a class="navbar-brand" href="/" style="font-size: 30px">EROOM</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <!-- data-toggle=collapse : 숨겨진다.  -->
         Menu
         <i class="fas fa-bars"></i>
       </button>
@@ -48,8 +48,13 @@
           <li class="nav-item">
             <a class="nav-link" href="/calendar">학생회 일정</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/rent">대여 관리</a>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-toggle= "dropdown">대여 관리</a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="/rent">전공서적</a>
+              <a class="dropdown-item" href="/rent_a">전공서적</a>
+              <a class="dropdown-item" href="/rent">전공서적</a>
+            </div>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/<%= logIO_L %>"><%= logIO_T %></a>
@@ -75,9 +80,9 @@
   </header>
 
   <!-- Main Content -->
-  <div class="container-fluid">
-    <div class="no_header">학생회 공지사항</div>
-          <table class ="table table-bordered table-hover " border="1">
+  <div class="container-fluid col-md-7">
+    <div class="notice_header">학생회 공지사항</div>
+          <table class ="table table-bordered table-hover" border="1" id="notice_table">
             <thead style="text-align:center" class ="thead-dark">
               <tr>
                   <th>분류</th>
@@ -113,7 +118,7 @@
                    <td><a style="text-decoration:none" href="/notice_read/<%=data.number%>"> <b><%=data.title%></b></a></td> <!--hover 밑줄 없애기 - css 정리 필요-->
                    <td><%=data.name%></td>
                    <td><%=data.source%></td>
-                   <td><%=data.date.format("yy")%></td>
+                   <td><%=data.date%></td>
                </tr>
                <%}
              }%>

@@ -20,7 +20,7 @@
   <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Gamja+Flower|Hi+Melody|Jua|Nanum+Brush+Script|Nanum+Pen+Script&display=swap&subset=korean" rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link href="stylesheets/clean-blog.min.css" rel="stylesheet"> <!--이름 변경 필요-->
+  <link href="stylesheets/notice.css" rel="stylesheet"> <!--이름 변경 필요-->
 
 </head>
 
@@ -75,9 +75,9 @@
   </header>
 
   <!-- Main Content -->
-  <div class="container-fluid">
-    <div class="no_header">학생회 공지사항</div>
-          <table class ="table table-bordered table-hover " border="1">
+  <div class="container-fluid col-md-7">
+    <div class="notice_header">학생회 공지사항</div>
+          <table class ="table table-bordered table-hover " border="1" id="notice_table">
             <thead style="text-align:center" class ="thead-dark">
               <tr>
                   <th>분류</th>
@@ -130,7 +130,7 @@
           </div>
     </div>
     <div class="clearfix">
-      <a class="btn btn-dark float-right" href="/notice_write"><b>글쓰기</b></a>
+      <a class="btn btn-dark float-right" id="notice_write" href="/notice_write"><b>글쓰기</b></a>
     </div>
 
   <hr>
@@ -145,7 +145,7 @@
               <a href="https://instagram.com/software_eroom?igshid=12vwurt8xamjq">
                 <span class="fa-stack fa-lg">
                   <i class="fas fa-circle fa-stack-2x"></i>
-                  <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+                  <i class="fab fa-instagram fa-stack-1x fa-inverse" id="footer_instagram"></i>
                 </span>
               </a>
             </li>
@@ -171,7 +171,7 @@
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Custom scripts for this template -->
-  <script src="JavaScripts/clean-blog.min.js"></script>
+  <script src="JavaScripts/clean-blog.js"></script>
 
 </body>
 
