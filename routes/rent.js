@@ -16,15 +16,16 @@ var conn = mysql_odbc.init();
 /* Board List page */
 router.get('/rent', function(req, res, next) { //메인에서 page:1로 넘겨주면 됌
   var sql = "select * from rent";
+  var rentaldate;
   conn.query(sql, function (err, rows) {
     if (err) console.error("err : " + err);
     if (req.user == null){
-    if (!req.user) res.render('rent', {logIO_L : 'login', logIO_T : '로그인', rows: rows});
-    else res.render('rent', {logIO_L : 'logout', logIO_T : '로그아웃', rows: rows});
+    if (!req.user) res.render('rent', {logIO_L : 'login', logIO_T : '로그인', rows: rows, length: rows.length-1});
+    else res.render('rent', {logIO_L : 'logout', logIO_T : '로그아웃', rows: rows, length: rows.length-1});
   } else{
     if((req.user.id == "k1nder" && req.user.password == "asd123")||(req.user.id == "jung2da" && req.user.password == "jjung2259")||(req.user.id == "vouobb" && req.user.password == "dbwjd0416")){
-    if (!req.user) res.render('rentDev', {logIO_L : 'login', logIO_T : '로그인', rows: rows});
-    else res.render('rentDev', {logIO_L : 'logout', logIO_T : '로그아웃', rows: rows});
+    if (!req.user) res.render('rentDev', {logIO_L : 'login', logIO_T : '로그인', rows: rows, length: rows.length-1});
+    else res.render('rentDev', {logIO_L : 'logout', logIO_T : '로그아웃', rows: rows, length: rows.length-1});
     }
   }
   });
@@ -68,52 +69,126 @@ router.get('/rent_b', function(req, res, next) { //메인에서 page:1로 넘겨
 
 
 router.post('/rental', function(req,res,next){
-    var check = 0;
+    var check;
     var checknull = req.body;
-
+    var rentmatch = 0;
     var sql = "select Borrower, studentID from rent";
     conn.query(sql, function (err, rows) {
+
     console.log(req.body);
+
+    //rent
     if(checknull.rent)
     {
-      for (var i = 0; i < Object.keys(req.body.rent).length; i++)
+      //여러 input을 넘겨주면 배열이 되어버리고 , 하나면 변수가 되어버린다.
+      //req.body.Borrower의 형태가 달라져서 코드가 엉망이되는 단점이 존재한다.
+      if(Array.isArray(req.body.Borrower) == true)
       {
-          var Borrower = req.body.Borrower[i];
-          var studentID = req.body.studentID[i];
-          var id = parseInt(req.body.rent[i])+1;
-          console.log(id);
-          var manager = req.user.name;
-          var datas = [Borrower, studentID, manager, id];
+        for (var i = 0; i < Object.keys(req.body.Borrower).length; i++)
+        //모든 input칸의 값이 넘어오기 때문에 입력받은 input칸의 값을 구분하기 위해서 탐색 for문을 진행한다.
+        {
+          check = 0; //중복체크 변수, check > 0, 중복되는 값이 있다는 코드
 
-          for(var j=0; j<rows.length; j++)
+          //빈 input 태그 발견
+          if( req.body.Borrower[i] == "" || req.body.studentID[i] == "")
           {
-            var CPBorrower = rows[j].Borrower;
-            var CPstudentID = rows[j].studentID;
-            if(Borrower == CPBorrower || studentID == CPstudentID)
+            console.log("입력되지 않은 Input값을 발견하여 넘깁니다.");
+          }
+
+          //입력받은 input 태그 발견
+          else
+          {
+            var Borrower = req.body.Borrower[i];
+            var studentID = req.body.studentID[i];
+            var id = parseInt(req.body.rent[rentmatch])+1;
+            var manager = req.user.name;
+            var datas = [Borrower, studentID, manager, id];
+            rentmatch++;
+
+            //중복 대여 비교
+            for(var j=0; j<rows.length; j++)
             {
-              console.log("중복되는 대여 항목이 존재합니다.");
-              check++;
+              var CPBorrower = rows[j].Borrower;
+              var CPstudentID = rows[j].studentID;
+              if(Borrower == CPBorrower || studentID == CPstudentID)
+              {
+                console.log("중복되는 대여 항목이 존재합니다.");
+                check++;
+              }
+            }
+
+            //대여 저장
+            if(check == 0 && Borrower != "")//중복되는 값이 없고, 이름이 존재하면
+            {
+              var sql2 = "update rent set Borrower=?, studentID=?, manager=?, rentaldate=now(), returndate=null where id=?";
+              conn.query(sql2, datas, function(err,result)
+              {
+                if (err){console.error("err : " + err);}
+                console.log("저장되었습니다.");
+              });
+              //history 내역추가 해당 rent의 rent 테이블 모두 history로 보낸다.
+              //
+              //
+            }
+            else{
+              console.log("저장되지 않았습니다.");
             }
           }
-
-          if(check == 0 && Borrower != "")
-          {
-            var sql2 = "update rent set Borrower=?, studentID=?, manager=?, rentaldate=now(), returndate=null where id=?";
-            conn.query(sql2,datas, function(err,result)
-            {
-              if (err){console.error("err : " + err);}
-            });
-            //history 내역추가 해당 rent의 rent 테이블 모두 history로 보낸다.
-          }
-          else{
-            console.log("저장되지 않았습니다.");
-          }
+        }
       }
+      else
+      {
+        check = 0;
+
+        var Borrower = req.body.Borrower;
+        var studentID = req.body.studentID;
+        var id = parseInt(req.body.rent)+1;
+        var manager = req.user.name;
+        var datas = [Borrower, studentID, manager, id];
+
+        console.log(Borrower);
+        console.log(studentID);
+        console.log(id);
+
+
+        //중복 대여 비교
+        for(var j=0; j<rows.length; j++)
+        {
+          var CPBorrower = rows[j].Borrower;
+          var CPstudentID = rows[j].studentID;
+          if(Borrower == CPBorrower || studentID == CPstudentID)
+          {
+            console.log("중복되는 대여 항목이 존재합니다.");
+            check++;
+          }
+        }
+        console.log(check);
+        //대여 저장
+        if(check == 0 && Borrower != "")//중복되는 값이 없고, 이름이 존재하면
+        {
+          var sql2 = "update rent set Borrower=?, studentID=?, manager=?, rentaldate=now(), returndate=null where id=?";
+          conn.query(sql2, datas, function(err,result)
+          {
+            if (err){console.error("err : " + err);}
+            console.log("저장되었습니다.");
+          });
+          //history 내역추가 해당 rent의 rent 테이블 모두 history로 보낸다.
+          //
+          //
+        }
+        else{
+          console.log("저장되지 않았습니다.");
+        }
+      }
+
     }
+
+    //return
     console.log(checknull.return);
-    if(checknull.return)
+    if(checknull.return) //return에 값이 들어온다면
     {
       for (var i = 0; i < Object.keys(req.body.return).length; i++)
+      // Object.keys(req.body.return).length => 대여 반납 관련된 갯수
       {
         var Borrower = null;
         var studentID = null;
@@ -122,14 +197,13 @@ router.post('/rental', function(req,res,next){
         var manager = null;
         var datas = [Borrower, studentID, manager, id];
         var sql4 = "update rent set Borrower=?, studentID=?, manager=?, rentaldate=null, returndate=now() where id=?";
-        conn.query(sql4,datas, function(err,result)
+        conn.query(sql4, datas, function(err,result)
         {
           if (err){console.error("err : " + err);}
         });
       }
     }
         res.redirect('/rent');
-
   });
 });
 

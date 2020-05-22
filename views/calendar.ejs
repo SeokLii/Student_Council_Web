@@ -62,7 +62,9 @@
      //달력 출력//셀을 미리 만들고 가야될거 같음 : rows가 먹지도 않고 컨트롤 하기도 힘듬
      for(i=1; i<=lastDate.getDate(); i++){
        cell =row.insertCell();
-       cell.innerHTML = i + "<br/><p class='tb m"+i+"'> "+ <%=rows[0].content%> +"</p>";
+       //cell.innerHTML = i;
+       //cell.innerHTML = i + "<br/><p class='tb m"+i+"'> "+ <%=rows[0].content%> +"</p>";
+       cell.innerHTML = i + "<br/><p class='tb m"+i+"'></p>";
        cnt = cnt + 1;
        if (cnt%7 == 0)    //1주=7일
         row = calendar.insertRow();

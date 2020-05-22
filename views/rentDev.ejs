@@ -20,10 +20,49 @@
   <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Gamja+Flower|Hi+Melody|Jua|Nanum+Brush+Script|Nanum+Pen+Script&display=swap&subset=korean" rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link href="stylesheets/clean-blog.min.css" rel="stylesheet"> <!--이름 변경 필요-->
-
+  <link href="stylesheets/rent.css" rel="stylesheet"> <!--이름 변경 필요-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- jquery = 위에 선언 -->
 </head>
+<script >
+//description function
+$(function() {
+  var length = "<%=length%>";
+  console.log(parseInt(length));
 
+
+  for(var i=0; i<parseInt(length); i++)
+  {
+        var data = [];
+        data[i] = <%=description%>;
+        console.log(data[i]);
+      }
+
+  for(var a = 0; a < parseInt(length); a++)
+  {
+    $(".name"+a+"").on("click", function(){
+      //var inputString = prompt('일정을 추가하세요!','');
+      var k = "<%=rows[0].description%>";
+      console.log(k);
+      swal(k); // =alert(a);
+    });
+  }
+});
+
+//search function
+$(function(){
+  $("#keyword").keyup(function() {
+      var k = $(this).val();
+      $("#book-table > tbody > tr").hide();
+      var temp = $("#book-table > tbody > tr > td:nth-child(odd):contains('" + k + "')"); // td의 홀수번째 요소 중 k의 값을 가지는 것을 선택
+      //a:nth-child(odd or even or an+b) = a의 요소중에서 n번째를 선택 가능
+      //ex) $( 'ol li.jb:nth-child(2n+1)' ) => ol 요소의 자식 요소 li의 홀수 번째 요소 중에서 클래스 값으로 jb를 갖는 요소를 선택합니다.
+      //:contains("찾을 텍스트 또는 문자열") = 원하는 요소 선택 가능
+      $(temp).parent().show();
+    })
+  });
+
+</script>
 <body>
 
   <!-- Navigation -->
@@ -81,17 +120,27 @@
   <div class="Mbar">
 
     </div>
+
   <!-- Main Content -->
-  <div class="container-fluid">
-    <div  style="text-align:center" class="no_header">대여사업 물품 현황</div>
-    <div class="no_header">전공서적</div>
+  <div class="container-fluid col-md-9">
+    <div  style="text-align:center" class="rent_header">대여사업 물품 현황</div>
+    <div class="rent_header">전공서적</div>
+    <table style="margin-top: 50px; margin-bottom: 50px; width: 100%;" id="input-form">
+      <tr>
+        <td style="font-size:20px; height: 40px; padding:0px; text-align:center; width:20%;">천제 글</td>
+        <!-- <td style="width:5%; border-left: 2px rgb(149, 157, 142) solid;"></td> -->
+        <td style="height: 40px; display : block;"><input style="height:40px; width:90%" class="form-control" type="text" id="keyword" placeholder="제목" ><br></td>
+      </tr>
+    </table>
+
+
     <form action="/rental" method="post">
-          <table class ="table table-bordered table-hover " border="1">
+          <table class ="table table-bordered table-hover" id="book-table" border="1">
             <thead style="text-align:center" class ="thead-dark">
               <tr>
-                  <th>분류</th>
-                  <th>물품</th>
-                  <th>남은  기간</th>
+                  <th>제목</th>
+                  <th>ID Code</th>
+                  <th>남은 기간</th>
                   <th>대여학생</th>
                   <th>학번</th>
                   <th>대여</th>
@@ -108,8 +157,8 @@
                       {
                     %>
                    <tr style ="text-align:center">
-                       <td><b><%=data.kind%></b></td>
-                       <td><b><%=data.name%></b></td> <!--hover 밑줄 없애기 - css 정리 필요-->
+                       <td class="name<%=i%>"><b><%=data.name%></b></td>
+                       <td style="width:10%"><b><%=data.code%></b></td> <!--hover 밑줄 없애기 - css 정리 필요-->
                        <td id="result<%=i%>">-</td>
                        <td><input style="width:80%" type="text" name="Borrower" id="Borrower"></td>
                        <td><input style="width:80%" type="text" name="studentID" id="studentID"></td>
@@ -118,11 +167,21 @@
                    </tr>
                    <%}
                    else{
+                     var standard_date = new Date();
+                     var diff = standard_date - data.rentaldate/60000;
+                     var gap = (standard_date.getTime() - data.rentaldate.getTime())/60000;
+                     var hour = parseInt(gap/60);
+                     var minute = parseInt(gap%60);
+                     var diff_day = parseInt((71-hour)/24);
+                     var diff_hour = (71-hour)%24;
+                     var diff_minute = 60 - minute;
+
+                     hour > 71
                      %>
                      <tr style ="text-align:center">
-                         <td><b><%=data.kind%></b></td>
-                         <td><b><%=data.name%></b></td> <!--hover 밑줄 없애기 - css 정리 필요-->
-                         <td id="result<%=i%>"></td>
+                         <td class="name<%=i%>"><b><%=data.name%></b></td>
+                         <td><b><%=data.code%></b></td> <!--hover 밑줄 없애기 - css 정리 필요-->
+                         <td id="result<%=i%>"><%=diff_day%>일 <%=diff_hour%>시간 <%=diff_minute%>분</td>
                          <td><%=data.Borrower%></td>
                          <td><%=data.studentID%></td>
                          <td><input id="rent<%=i%>" style="width: 20px;	height: 20px;" type="checkbox" name="return" value="<%=i%>" checked="checked" disabled="disabled"></td>
@@ -139,8 +198,6 @@
           </div>
       </form>
     </div>
-
-
     <!-- <div class="clearfix">
       <a class="btn btn-dark float-right" href="/notice_write"><b>글쓰기</b></a>
     </div> -->
@@ -179,11 +236,14 @@
   </footer>
 
   <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
+  <!-- <script src="vendor/jquery/jquery.min.js"></script> -->
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 
   <!-- Custom scripts for this template -->
   <script src="JavaScripts/clean-blog.min.js"></script>
+  <!-- <script src="JavaScripts/rent_serch.js"></script> -->
   <!-- <script src="JavaScripts/time.js"></script> -->
 
 </body>
