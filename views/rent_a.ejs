@@ -20,10 +20,44 @@
   <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Gamja+Flower|Hi+Melody|Jua|Nanum+Brush+Script|Nanum+Pen+Script&display=swap&subset=korean" rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link href="stylesheets/clean-blog.min.css" rel="stylesheet"> <!--이름 변경 필요-->
+  <link href="stylesheets/rent.css" rel="stylesheet"> <!--이름 변경 필요-->
+
+  <!-- jquery = 위에 선언 -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 </head>
+<script>
+//description function
+$(function() {
+  // for(var a = 0; a < parseInt(length); a++)
+  // {
+  //   $(".name"+a+"").on("click", function(){
+  //     swal("<%=rows[0].description%>"); // =alert(a);
+  //   });
+  // }
+  $(".name0").on("click", function(){swal("<%=rows[0].description%>");}); // =alert(a);
+  $(".name1").on("click", function(){swal("<%=rows[1].description%>");});
+  $(".name2").on("click", function(){swal("<%=rows[2].description%>");});
+  $(".name3").on("click", function(){swal("<%=rows[3].description%>");});
+  $(".name4").on("click", function(){swal("<%=rows[4].description%>");});
+  $(".name5").on("click", function(){swal("<%=rows[5].description%>");});
+  $(".name6").on("click", function(){swal("<%=rows[6].description%>");});
+});
 
+//search function
+$(function(){
+  $("#keyword").keyup(function() {
+      var k = $(this).val();
+      $("#book-table > tbody > tr").hide();
+      var temp = $("#book-table > tbody > tr > td:nth-child(odd):contains('" + k + "')"); // td의 홀수번째 요소 중 k의 값을 가지는 것을 선택
+      //a:nth-child(odd or even or an+b) = a의 요소중에서 n번째를 선택 가능
+      //ex) $( 'ol li.jb:nth-child(2n+1)' ) => ol 요소의 자식 요소 li의 홀수 번째 요소 중에서 클래스 값으로 jb를 갖는 요소를 선택합니다.
+      //:contains("찾을 텍스트 또는 문자열") = 원하는 요소 선택 가능
+      $(temp).parent().show();
+    })
+  });
+
+</script>
 <body>
 
   <!-- Navigation -->
@@ -48,8 +82,13 @@
           <li class="nav-item">
             <a class="nav-link" href="/calendar">학생회 일정</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/rent">대여 관리</a>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-toggle= "dropdown">대여 관리</a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="/rent">전공서적</a>
+              <a class="dropdown-item" href="/rent_a">보조배터리 & 자전거</a>
+              <a class="dropdown-item" href="/rent">우산 & 담요</a>
+            </div>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/<%= logIO_L %>"><%= logIO_T %></a>
@@ -73,84 +112,107 @@
       </div>
     </div>
   </header>
-  <div>
-    <div class="subNav"><a style="text-decoration:none; color:black;" href="#">전공서적</a></div>
-    <div class="subNav"><a style="text-decoration:none; color:black;" href="#">보조배터리 & 자전거</a></div>
-    <div class="subNav"><a style="text-decoration:none; color:black;" href="#">우산 & 담요</a></div>
+  <div class="subnavbar">
+    <div class="rent_subNav"><a href="rent">전공서적</a></div>
+    <div class="rent_subNav"><a href="rent_a">보조배터리 & 자전거</a></div>
+    <div class="rent_subNav"><a href="rent_b">우산 & 담요</a></div>
   </div>
-  <div class="Mbar">
+  <div class="Mbar"></div>
 
-    </div>
   <!-- Main Content -->
-  <div class="container-fluid">
-    <div  style="text-align:center" class="no_header">대여사업 물품 현황</div>
-    <div class="no_header">전공서적</div>
-          <table class ="table table-bordered table-hover " border="1">
-            <thead style="text-align:center" class ="thead-dark">
-              <tr>
-                  <th>분류</th>
-                  <th>물품</th>
-                  <th>대여기간</th>
-                  <th>현황</th>
-                  <th>반납날짜</th>
-                  <th>대여학생</th>
-                  <th>대여</th>
-              </tr>
-            </thead>
-            <tbody>
-              <%
-                for(var i=0; i<rows.length; i++)
-                {
-                    var data = rows[i];
-              %>
-             <tr style ="text-align:center">
-                 <td><b><%=data.kind%></b></td>
-                 <td><b><%=data.name%></b></td> <!--hover 밑줄 없애기 - css 정리 필요-->
-                 <td><%=data.period%></td>
-                 <td><%=data.status%></td>
-                 <td><%=data.deadline%></td>
-                 <td><%=data.Borrower%></td>
-                 <td><input style="width: 20px;	height: 20px;" type="checkbox" name="" value=""></td>
-             </tr>
-             <%}%>
-            </tbody>
-          </table>
-          <div class="no_header">보조배터리</div>
-          <table class ="table table-bordered table-hover " border="1">
-            <thead style="text-align:center" class ="thead-dark">
-              <tr>
-                  <th>분류</th>
-                  <th>물품</th>
-                  <th>대여기간</th>
-                  <th>현황</th>
-                  <th>반납날짜</th>
-                  <th>대여학생</th>
-                  <th>대여</th>
-              </tr>
-            </thead>
-            <tbody>
-              <%
-                for(var i=0; i<rows.length; i++)
-                {
-                    var data = rows[i];
-              %>
-             <tr style ="text-align:center">
-                 <td><b><%=data.kind%></b></td>
-                 <td><b><%=data.name%></b></td> <!--hover 밑줄 없애기 - css 정리 필요-->
-                 <td><%=data.period%></td>
-                 <td><%=data.status%></td>
-                 <td><%=data.deadline%></td>
-                 <td><%=data.Borrower%></td>
-                 <td><input style="width: 20px;	height: 20px;" type="checkbox" name="" value="" checked="checked" disabled="disabled"></td>
-             </tr>
-             <%}%>
-            </tbody>
-          </table>
-    </div>
-    <div class="clearfix">
-      <a class="btn btn-dark float-right" href="/notice_write"><b>글쓰기</b></a>
-    </div>
+  <div class="container-fluid col-md-9">
+    <div class="rent_header" id="header_main">대여사업 물품 현황</div>
+    <div class="rent_header">보조배터리 & 자전거</div>
+    <table id="input-form" style="margin-top: 50px; margin-bottom: 50px; width: 100%;" >
+      <tr>
+        <td style="font-size:20px; height: 40px; padding:0px; text-align:center; width:20%;">천제 글</td>
+        <!-- <td style="width:5%; border-left: 2px rgb(149, 157, 142) solid;"></td> -->
+        <td style="height: 40px; display : block;"><input style="height:40px; width:90%" class="form-control" type="text" id="keyword" placeholder="제목" ><br></td>
+      </tr>
+    </table>
 
+    <table class ="table table-bordered table-hover" id="book-table" border="1">
+      <thead style="text-align:center" class ="thead-dark">
+        <tr>
+            <th>제목</th>
+            <th>ID Code</th>
+            <th>남은 기간</th>
+            <th>대여학생</th>
+            <th>학번</th>
+            <th>대여</th>
+            <th>반납</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%
+          for(var i=0; i<rows.length; i++)
+          {
+                var data = rows[i];
+
+                if(data.Borrower == null)
+                {
+              %>
+              <tr style ="text-align:center">
+                  <td class="name<%=i%>" style="width:13%"><b><%=data.name%></b></td>
+                  <td><b><%=data.code%></b></td>
+                  <td style="width:18%">-</td>
+                  <td style="width:16%"></td>
+                  <td></td>
+                  <td style="width:8%"></td>
+                  <td style="width:8%"><input class="chbox" type="checkbox" name="return" value="<%=i%>" checked="checked" disabled="disabled"></td>
+              </tr>
+             <%}
+             else{
+               var standard_date = new Date();
+               var diff = standard_date - data.rentaldate/60000;
+               var gap = (standard_date.getTime() - data.rentaldate.getTime())/60000;
+               var hour = parseInt(gap/60);
+               var minute = parseInt(gap%60);
+               var diff_day = parseInt((71-hour)/24);
+               var diff_hour = (71-hour)%24;
+               var diff_minute = 59 - minute;
+
+               var over_hour = Math.abs(hour%24);
+
+               <!-- 시간 00 두자리수로 만들어주기 -->
+               if(diff_hour < 10){ diff_hour = "0" + diff_hour}
+               if(diff_minute < 10){ diff_minute = "0" + diff_minute}
+               if(over_hour < 10){ over_hour = "0" + over_hour}
+               if(minute < 10){minute = "0" + minute}
+
+              <!-- 시간 초과시 count up으로 변경 -->
+               if(hour < 71){
+                 var Ddate = "D-" + diff_day + " " + diff_hour + ":" + diff_minute;
+               }
+               else{
+                 var Ddate = "D+" + Math.abs(diff_day) + " " + over_hour + ":" + minute;
+               }
+
+               %>
+               <tr style ="text-align:center">
+                   <td class="name<%=i%>"><b><%=data.name%></b></td>
+                   <td><b><%=data.code%></b></td>
+                   <% if(diff_day >= 1)
+                   { %>
+                   <td style="color:green"><%=Ddate%></td>
+                   <%}
+                   else if(diff_day == 0){%>
+                   <td style="color:rgb(196, 183, 30)"><%=Ddate%></td>
+                   <%}
+                   else{%>
+                   <td style="color:red"><%=Ddate%></td>
+                   <%}%>
+                   <td><%=data.Borrower%></td>
+                   <td><%=data.studentID%></td>
+                   <td><input class="chbox" id="rent<%=i%>" type="checkbox" name="return" value="<%=i%>" checked="checked" disabled="disabled"></td>
+                   <td></td>
+             <% }
+        }%>
+      </tbody>
+    </table>
+    <div class="clearfix">
+    </div>
+  </div>
   <hr>
 
   <!-- Footer -->
@@ -160,7 +222,7 @@
         <div class="col-lg-8 col-md-10 mx-auto">
           <ul class="list-inline text-center">
             <li class="list-inline-item">
-              <a href="https://instagram.com/software_eroom?igshid=12vwurt8xamjq">
+              <a style="color: #212529" href="https://instagram.com/software_eroom?igshid=12vwurt8xamjq">
                 <span class="fa-stack fa-lg">
                   <i class="fas fa-circle fa-stack-2x"></i>
                   <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
@@ -168,7 +230,7 @@
               </a>
             </li>
             <li class="list-inline-item">
-              <a href="https://github.com/SeokLii/EROOM-Website">
+              <a style="color: #212529" href="https://github.com/SeokLii/EROOM-Website">
                 <span class="fa-stack fa-lg">
                   <i class="fas fa-circle fa-stack-2x"></i>
                   <i class="fab fa-github fa-stack-1x fa-inverse"></i>
@@ -185,11 +247,15 @@
   </footer>
 
   <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
+  <!-- <script src="vendor/jquery/jquery.min.js"></script> -->
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 
   <!-- Custom scripts for this template -->
   <script src="JavaScripts/clean-blog.min.js"></script>
+  <!-- <script src="JavaScripts/rent_serch.js"></script> -->
+  <!-- <script src="JavaScripts/time.js"></script> -->
 
 </body>
 

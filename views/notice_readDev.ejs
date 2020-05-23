@@ -47,8 +47,13 @@
           <li class="nav-item">
             <a class="nav-link" href="/calendar">학생회 일정</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/rent">대여 관리</a>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-toggle= "dropdown">대여 관리</a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="/rent">전공서적</a>
+              <a class="dropdown-item" href="/rent_a">보조배터리 & 자전거</a>
+              <a class="dropdown-item" href="/rent_b">우산 & 담요</a>
+            </div>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/<%= logIO_L %>"><%= logIO_T %></a>
@@ -104,7 +109,7 @@
             </tbody>
           </table>
     </div>
-    <div class="container col-md-5" style="text-align: center; padding:20px;" id="read_content">
+    <div class="container col-md-5" style="padding:20px;" id="read_content">
         <table class ="table table-bordered" border="1">
           <thead style="text-align:center" class ="thead-dark">
             <tr>
@@ -112,49 +117,49 @@
             </tr>
           </thead>
             <tr>
-              <td class="no_content">
-                <%
-                  var pathData = new Array();
-                  var j = 0;
-                  if(row.imgPath != null)
-                  {
-                    <!--DB의 이미지 경로 추출하는 과정-->
-                      for (var i = 0; i < row.imgPath.length; i++)
-                      {
-                          if (row.imgPath[i] == " "){
-                            j++;
-                          }
-                          else{
-                              if (pathData[j] == null){<!--경로명 앞, undefine 방지-->
-                               pathData[j] = row.imgPath[i];
-                                }
-                               else{
-                                 pathData[j] = pathData[j] + row.imgPath[i];
-                               }
-                          }
-                      }
-                  }
-                  if(pathData.length != 0)
-                  {
-                    for (var i =0; i <= j; i++)
+              <td style="text-align:center" class="no_content">
+              <%
+                var pathData = new Array();
+                var j = 0;
+                if(row.imgPath != null)
+                {
+                  <!--DB의 이미지 경로 추출하는 과정-->
+                    for (var i = 0; i < row.imgPath.length; i++)
                     {
-                %>
-                    <img style="width:80%;" src="/images/notice_img/<%=pathData[i]%>" /><br />
-                <%
+                        if (row.imgPath[i] == " "){
+                          j++;
+                        }
+                        else{
+                            if (pathData[j] == null){<!--경로명 앞, undefine 방지-->
+                             pathData[j] = row.imgPath[i];
+                              }
+                             else{
+                               pathData[j] = pathData[j] + row.imgPath[i];
+                             }
+                        }
                     }
+                }
+                if(pathData.length != 0)
+                {
+                  for (var i =0; i <= j; i++)
+                  {
+              %>
+                  <img style="width:80%;" src="/images/notice_img/<%=pathData[i]%>" /><br />
+              <%
                   }
-                %>
-                  <% var path = row.imgPath;
-                  if(path){ %> <hr /><% }%> <!--null check시 javascript는 !path 부정문으로 체크한다.-->
-                  <%=row.content%>
+                }
+              %>
+                <% var path = row.imgPath;
+                if(path){ %> <hr /><% }%> <!--null check시 javascript는 !path 부정문으로 체크한다.-->
+                <%=row.content%>
               </td>
             </tr>
         </table>
     </div>
-        <div class="clearfix">
-          <a class="btn btn-dark float-right" id="btn_delete" href="/notice_delete/<%=row.number%>"><b>글 삭제</b></a>
-          <a class="btn btn-dark float-right" id="btn_update" href="/notice_update/<%=row.number%>"><b>글 수정</b></a>
-        </div>
+    <div class="clearfix">
+      <a class="btn btn-dark float-right" id="btn_delete" href="/notice_delete/<%=row.number%>"><b>글 삭제</b></a>
+      <a class="btn btn-dark float-right" id="btn_update" href="/notice_update/<%=row.number%>"><b>글 수정</b></a>
+    </div>
   </form>
 
 <hr style="border: 0;height: 3px; width:99%; background-color: #222222" />

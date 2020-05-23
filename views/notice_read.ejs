@@ -47,8 +47,13 @@
           <li class="nav-item">
             <a class="nav-link" href="/calendar">학생회 일정</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/rent">대여 관리</a>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-toggle= "dropdown">대여 관리</a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="/rent">전공서적</a>
+              <a class="dropdown-item" href="/rent_a">보조배터리 & 자전거</a>
+              <a class="dropdown-item" href="/rent_b">우산 & 담요</a>
+            </div>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/<%= logIO_L %>"><%= logIO_T %></a>
@@ -112,7 +117,7 @@
             </tr>
           </thead>
             <tr>
-              <td class="no_content">
+              <td style="text-align:center" class="no_content">
               <%
                 var pathData = new Array();
                 var j = 0;

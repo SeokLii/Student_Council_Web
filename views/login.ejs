@@ -44,8 +44,13 @@
           <li class="nav-item">
             <a class="nav-link" href="/calendar">확생회 일정</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/rent">대여 관리</a>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-toggle= "dropdown">대여 관리</a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="/rent">전공서적</a>
+              <a class="dropdown-item" href="/rent_a">보조배터리 & 자전거</a>
+              <a class="dropdown-item" href="/rent_b">우산 & 담요</a>
+            </div>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/<%= logIO_L %>"><%= logIO_T %></a>
@@ -78,7 +83,7 @@
           <input class="form-control" type="password" name="password" id="password" placeholder="Password" required><br>
           <button style="background-color:#86888c" class="btn btn-lg btn-secondary btn-block" type="submit" id="btn-Yes">로 그 인</button>
         </div>
-          <img style="width:390px; height:350px; clear:both;margin-top:150px;" src="images/eroom_mark2.PNG"/>
+          <img style="width:390px; height:350px; clear:both;margin-top:150px; margin-right:15px" src="images/eroom_mark2.PNG"/>
   </div>
     </form>
 
@@ -115,6 +120,7 @@
 
 
 <!-- Bootstrap core JavaScript -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <!-- Custom scripts for this template -->

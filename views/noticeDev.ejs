@@ -48,8 +48,13 @@
           <li class="nav-item">
             <a class="nav-link" href="/calendar">학생회 일정</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/rent">대여 관리</a>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-toggle= "dropdown">대여 관리</a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="/rent">전공서적</a>
+              <a class="dropdown-item" href="/rent_a">보조배터리 & 자전거</a>
+              <a class="dropdown-item" href="/rent_b">우산 & 담요</a>
+            </div>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/<%= logIO_L %>"><%= logIO_T %></a>
@@ -96,8 +101,8 @@
               %>
              <tr style ="text-align:center">
                  <td><b>NOTICE</b></td>
-                 <td><a style="text-decoration:none" href="/notice_read/<%=data.number%>"> <b><%=data.title%></b></a></td> <!--hover 밑줄 없애기 - css 정리 필요-->
-                 <td><%=data.name%></td>
+                 <td><a style="text-decoration:none" href="/notice_read/<%=data.number%>"><b><%=data.title%></b></a></td> <!--hover 밑줄 없애기 - css 정리 필요-->
+                 <td style="width:14%"><%=data.name%></td>
                  <td><%=data.source%></td>
                  <td><%=data.date%></td>
              </tr>
@@ -110,8 +115,8 @@
                %>
               <tr style ="text-align:center">
                   <td><b>NOTICE</b></td>
-                  <td><a style="text-decoration:none" href="/notice_read/<%=data.number%>"> <b><%=data.title%></b></a></td> <!--hover 밑줄 없애기 - css 정리 필요-->
-                  <td><%=data.name%></td>
+                  <td><a style="text-decoration:none" href="/notice_read/<%=data.number%>"><b><%=data.title%></b></a></td> <!--hover 밑줄 없애기 - css 정리 필요-->
+                  <td style="width:14%"><%=data.name%></td>
                   <td><%=data.source%></td>
                   <td><%=data.date%></td>
               </tr>

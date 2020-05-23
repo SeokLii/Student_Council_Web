@@ -3,23 +3,23 @@
  * Copyright 2013-2019 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-clean-blog/blob/master/LICENSE)
  */
-a {
-  color: #212529;
+a{
+  color: #fff;
 }
-
 a:focus, a:hover {
-  color: #e94949;
+  color: #e9abab;
+  text-decoration:none;
 }
 /* 마우스로 누르고 드래그 했을 때 */
 ::-moz-selection {
-  color: #fff;
+  color: #000000;
   background: #4a5759;
   text-shadow: none;
 }
 
 ::selection {
-  color: #fff;
-  background: #4a5759;
+  color: #000000;
+  /* background: #4a5759; */
   text-shadow: none;
 }
 
@@ -66,21 +66,23 @@ img::-moz-selection {
   text-transform: uppercase;
 }
 /* subnavbar */
-.subNav{
-  font-family: 'Gamja Flower';
-  background : #f2e7d3;
-  opacity: 0.5;
-  font-size: 10px;
-  font-weight:normal;
-  float: left;
-  width: 33%;
-  text-align: center;
-  padding: 20px;
-  margin-bottom: 60px;
-  text-decoration:none;
+.subnavbar{
+  text-align:center;
+  margin-bottom: 200px;
 }
-.subNav:hover{
+.rent_subNav{
   font-size: 10px;
+  text-align: center;
+  font-family: 'Gamja Flower';
+
+  background : #2a2f34;
+
+  float: left;
+  width: 33.333%;
+  padding: 10px;
+}
+.rent_subNav:hover{
+  font-size: 11px;
 }
 .Mbar{
   margin: 100px;
@@ -100,10 +102,27 @@ img::-moz-selection {
   padding-bottom:30px;
   font-weight:normal;
 }
+#header_main{
+  font-size: 50px;
+  text-align:center;
+  margin-bottom: 50px;
+}
 
 /* table */
-
-
+#book-table{
+font-size: 9px;
+}
+.chbox{
+  width: 8px;
+  height: 8px;
+}
+#main_name{width:5%}
+#main_code{width:5%}
+#main_date{width:50%}
+#main_borrower{width:5%}
+#main_studentID{width:8%}
+#main_rent{width:5%}
+#main_return{width:5%}
 @media only screen and (min-width: 768px) {
   /* header */
   .rent_header{
@@ -112,9 +131,50 @@ img::-moz-selection {
     padding-bottom:30px;
     font-weight:normal;
   }
+  #header_main{
+    font-size: 60px;
+    text-align:center;
+    margin-bottom: 35px;
+  }
+
+  /* subnavbar */
+  .subnavbar{
+    text-align:center;
+    margin-bottom: 150px;
+  }
+  .rent_subNav{
+    font-size: 20px;
+    text-align: center;
+    font-family: 'Gamja Flower';
+
+    background : #2a2f34;
+
+    float: left;
+    width: 33.333%;
+    padding: 11px;
+  }
+  .rent_subNav:hover{
+    font-size: 21px;
+  }
+  .Mbar{
+    margin: 100px;
+  }
 
   /* table */
-
+  #book-table{
+  font-size: 12px;
+  }
+  .chbox{
+    width: 15px;
+    height: 15px;
+  }
+  #main_name{width:25%}
+  #main_code{width:5%}
+  #main_date{width:10%}
+  #main_borrower{width:10%}
+  #main_studentID{width:10%}
+  #main_rent{width:5%}
+  #main_return{width:5%}
 }
 
 @media only screen and (min-width: 992px) {
@@ -125,10 +185,51 @@ img::-moz-selection {
     padding-bottom:30px;
     font-weight:normal;
   }
+  #header_main{
+    font-size: 80px;
+    text-align:center;
+    margin-bottom: 60px;
+  }
+
+  /* subnavbar */
+  .subnavbar{
+    text-align:center;
+    margin-bottom: 200px;
+  }
+  .rent_subNav{
+    font-size: 30px;
+    text-align: center;
+    font-family: 'Gamja Flower';
+
+    background : #2a2f34;
+
+    float: left;
+    width: 33.333%;
+    padding: 12px;
+  }
+  .rent_subNav:hover{
+    font-size: 31px;
+  }
+  .Mbar{
+    margin: 100px;
+  }
 
   /* table */
-
-
+  #book-table{
+  font-size: 20px;
+  }
+  .chbox{
+    width: 20px;
+    height: 20px;
+  }
+  #main_name{width:40%}
+  #main_code{width:5%}
+  #main_date{width:10%}
+  #main_borrower{width:10%}
+  #main_studentID{width:10%}
+  #main_rent{width:5%}
+  #main_return{width:5%}
+}
 /* min-width = 이상
    max-width = 이하 */
 @media only screen and (min-width: 992px) {
@@ -186,7 +287,6 @@ img::-moz-selection {
 }
 
 header.masthead {
-  margin-bottom: 50px;
   background: no-repeat center center;
   background-color: #868e96;
   background-attachment: scroll;
