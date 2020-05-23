@@ -224,7 +224,7 @@ $(function(){
                       {
                     %>
                    <tr style ="text-align:center">
-                       <td id="main_name" class="name<%=i%>"><b><%=data.name%></b></td>
+                       <td class="name<%=i%>"><b><%=data.name%></b></td>
                        <td id="main_code"><b><%=data.code%></b></td>
                        <td id="main_date">-</td>
                        <td id="main_borrower"><input style="width:80%" type="text" name="Borrower" id="Borrower"></td>
@@ -261,7 +261,7 @@ $(function(){
 
                      %>
                      <tr style ="text-align:center">
-                         <td class="name<%=i%>"><b><%=data.name%></b></td>
+                         <td id="main_name" class="name<%=i%>"><b><%=data.name%></b></td>
                          <td><b><%=data.code%></b></td>
                          <% if(diff_day >= 1)
                          { %>
@@ -271,7 +271,7 @@ $(function(){
                          <td style="color:rgb(196, 183, 30)"><%=Ddate%></td>
                          <%}
                          else{%>
-                         <td style="color:red"><%=Ddate%></td>
+                         <td style="color:red;"><%=Ddate%></td>
                          <%}%>
                          <td><%=data.Borrower%></td>
                          <td><%=data.studentID%></td>

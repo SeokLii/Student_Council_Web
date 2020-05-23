@@ -3,23 +3,23 @@
  * Copyright 2013-2019 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-clean-blog/blob/master/LICENSE)
  */
-a{
-  color: #fff;
+a {
+  color: #212529;
 }
+
 a:focus, a:hover {
-  color: #e9abab;
-  text-decoration:none;
+  color: #e94949;
 }
 /* 마우스로 누르고 드래그 했을 때 */
 ::-moz-selection {
-  color: #000000;
+  color: #fff;
   background: #4a5759;
   text-shadow: none;
 }
 
 ::selection {
-  color: #000000;
-  /* background: #4a5759; */
+  color: #fff;
+  background: #4a5759;
   text-shadow: none;
 }
 
@@ -65,207 +65,163 @@ img::-moz-selection {
   letter-spacing: 1px;
   text-transform: uppercase;
 }
-/* subnavbar */
-.subnavbar{
-  text-align:center;
-  margin-bottom: 200px;
-}
-.rent_subNav{
-  font-size: 10px;
-  text-align: center;
-  font-family: 'Gamja Flower';
-
-  background : #2a2f34;
-
-  float: left;
-  width: 33.333%;
-  padding: 10px;
-}
-.rent_subNav:hover{
-  font-size: 11px;
-}
-.Mbar{
-  margin: 100px;
-}
-
-/* container */
-.container-fluid{
-  font-weight:bold;
-  font-size: 20px;
-  font-family: 'Hi Melody';
-}
 
 /* header */
-.rent_header{
-  font-family: 'Nanum Pen Script';
-  font-size: 40px;
-  padding-bottom:30px;
-  font-weight:normal;
-}
-#header_main{
-  font-size: 50px;
+.MRheader{
+  font-size: 20px;
   text-align:center;
-  margin-bottom: 50px;
+  margin:0px;
+  margin-top: 20px;
+  padding:0px
+}
+.MLheader{
+  font-size: 20px;
+  text-align:center;
+  margin:0px;
+  margin-top: 20px;
+  margin-right: 40px;
+  padding:0px;
+}
+.Rdiv{
+  width:100%;
+  padding: 10px;
+}
+.Ldiv{
+  width:100%;
+  margin-left:50px;
 }
 
 /* table */
-#book-table{
-font-size: 9px;
+#notice_table{
+  font-family: 'Gamja Flower';
+  font-size: 2px;
 }
-.chbox{
-  width: 8px;
-  height: 8px;
+.pagingButton{
+      width:13px;
+      height: 5%;
+      background-color: #292c2d;
+      border: none;
+      color:#fff;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 10px;
+      cursor: pointer;
 }
-#main_name{width:10%}
-#main_name:before {
-  content: "대여";
-   width: 20px;
-   padding: 1px 3px;
-   margin: 0 5px;
-   border-radius: 4px;
-   background-color: red;
-   text-align: center;
-   color: #fff;
-   display: inline;
-  }
-#main_code{width:5%}
-#main_date{width:50%}
-#main_borrower{width:5%}
-#main_studentID{width:8%}
-#main_rent{width:5%}
-#main_return{width:5%}
+#notice_write{
+  width:55px;
+  height: 25px;
+  text-align: center;
+  font-size: 1px;
+  padding: 0px;
+  padding-top: 4px;
+  margin-right: 15px;
+}
 
 @media only screen and (min-width: 768px) {
   /* header */
-  .rent_header{
-    font-family: 'Nanum Pen Script';
-    font-size: 50px;
-    padding-bottom:30px;
-    font-weight:normal;
-  }
-  #header_main{
-    font-size: 60px;
+  .MRheader{
+    font-size: 40px;
     text-align:center;
-    margin-bottom: 35px;
+    margin:0px;
+    margin-top: 20px;
+    padding:0px
   }
-
-  /* subnavbar */
-  .subnavbar{
+  .MLheader{
+    font-size: 40px;
     text-align:center;
-    margin-bottom: 150px;
+    margin:0px;
+    margin-top: 20px;
+    margin-right: 150px;
+    padding:0px
   }
-  .rent_subNav{
-    font-size: 20px;
-    text-align: center;
-    font-family: 'Gamja Flower';
-
-    background : #2a2f34;
-
-    float: left;
-    width: 33.333%;
-    padding: 11px;
+  .Rdiv{
+    width:39%;
+    padding: 10px;
   }
-  .rent_subNav:hover{
-    font-size: 21px;
-  }
-  .Mbar{
-    margin: 100px;
+  .Ldiv{
+    width:57%;
+    margin-left:40px
   }
 
   /* table */
-  #book-table{
-  font-size: 12px;
+  #notice_table{
+    font-family: 'Gamja Flower';
+    font-size: 3px;
   }
-  .chbox{
-    width: 15px;
-    height: 15px;
+  .pagingButton{
+        width:3%;
+        height: 5%;
+        background-color: #292c2d;
+        border: none;
+        color:#fff;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 12px;
+        cursor: pointer;
   }
-  #main_name{width:25%}
-  #main_name:before {
-    content: "대여";
-     width: 40px;
-     padding: 3px 6px;
-     margin: 0 10px;
-     border-radius: 4px;
-     background-color: red;
-     text-align: center;
-     color: #fff;
-     display: inline;
-    }
-  #main_code{width:5%}
-  #main_date{width:10%}
-  #main_borrower{width:10%}
-  #main_studentID{width:10%}
-  #main_rent{width:5%}
-  #main_return{width:5%}
+  #notice_write{
+    width: 80px;
+    height: 5%;
+    text-align: center;
+    font-size: 3px;
+    padding: 10px;
+  }
 }
 
 @media only screen and (min-width: 992px) {
   /* header */
-  .rent_header{
-    font-family: 'Nanum Pen Script';
-    font-size: 70px;
-    padding-bottom:30px;
-    font-weight:normal;
-  }
-  #header_main{
-    font-size: 80px;
+  .MRheader{
+    font-size: 40px;
     text-align:center;
-    margin-bottom: 60px;
+    margin:0px;
+    margin-top: 20px;
+    padding:0px
   }
-
-  /* subnavbar */
-  .subnavbar{
+  .MLheader{
+    font-size: 40px;
     text-align:center;
-    margin-bottom: 200px;
+    margin:0px;
+    margin-top: 20px;
+    margin-right: 150px;
+    padding:0px
   }
-  .rent_subNav{
-    font-size: 30px;
-    text-align: center;
-    font-family: 'Gamja Flower';
-
-    background : #2a2f34;
-
-    float: left;
-    width: 33.333%;
-    padding: 12px;
+  .Rdiv{
+    width:39%;
+    padding: 10px;
   }
-  .rent_subNav:hover{
-    font-size: 31px;
-  }
-  .Mbar{
-    margin: 100px;
+  .Ldiv{
+    width:57%;
+    margin-left:40px
   }
 
   /* table */
-  #book-table{
-  font-size: 20px;
+  #notice_table{
+    font-family: 'Gamja Flower';
+    font-size: 16px;
   }
-  .chbox{
-    width: 20px;
-    height: 20px;
+  .pagingButton{
+        width:25px;
+        height: 22px;
+        background-color: #292c2d;
+        border: none;
+        color:#fff;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 12px;
+        cursor: pointer;
   }
-  #main_name{
-    width:40%;
+  #notice_write{
+    width:90px;
+    height: 5%;
+    text-align: center;
+    font-size: 10px;
+    padding: 13px;
   }
-  #main_name:before {
-    content: "대여";
-     width: 40px;
-     padding: 3px 6px;
-     margin: 0 10px;
-     border-radius: 4px;
-     background-color: red;
-     text-align: center;
-     color: #fff;
-     display: inline;
-    }
-  #main_code{width:5%}
-  #main_date{width:10%}
-  #main_borrower{width:10%}
-  #main_studentID{width:10%}
-  #main_rent{width:5%}
-  #main_return{width:5%}
 }
+
 /* min-width = 이상
    max-width = 이하 */
 @media only screen and (min-width: 992px) {

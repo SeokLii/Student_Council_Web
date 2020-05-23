@@ -222,7 +222,7 @@ $(function(){
                 {
               %>
              <tr style ="text-align:center">
-               <td id="main_name" class="name<%=i%>"><b><%=data.name%></b></td>
+               <td class="name<%=i%>"><b><%=data.name%></b></td>
                <td id="main_code"><b><%=data.code%></b></td>
                <td id="main_date">-</td>
                <td id="main_borrower"></td>
@@ -259,7 +259,7 @@ $(function(){
 
                %>
                <tr style ="text-align:center">
-                   <td class="name<%=i%>"><b><%=data.name%></b></td>
+                   <td id="main_name" class="name<%=i%>"><b><%=data.name%></b></td>
                    <td><b><%=data.code%></b></td>
                    <% if(diff_day >= 1)
                    { %>
