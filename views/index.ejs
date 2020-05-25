@@ -17,7 +17,7 @@
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-  <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Gamja+Flower|Hi+Melody|Jua|Nanum+Brush+Script|Nanum+Pen+Script&display=swap&subset=korean" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Gamja+Flower|Nanum+Myeongjo|Hi+Melody|Jua|Nanum+Brush+Script|Nanum+Pen+Script&display=swap&subset=korean" rel="stylesheet">
   <!-- Custom styles for this template -->
   <link href="stylesheets/index.css" rel="stylesheet"> <!--이름 변경 필요-->
 
@@ -79,14 +79,13 @@
   </header>
 
   <!-- Main Content -->
-  <div class="container-fluid col-md-7">
+  <div class="container-fluid col-md-10">
     <div class="row">
       <div class="Ldiv">
-        <div class="MLheader">이룸학생회</div>
-        <img style="text-align:center; padding: 10px; width:87%"src="images/Student Council introduce1.jpg"/></div>
+        <img style="text-align:center; padding: 10px; margin-top: 80px; border-radius: 10%; width:100%"src="images/index.PNG"/></div>
       <div class="Rdiv">
-        <div class="MRheader">공지사항</div>
-          <table class ="table table-bordered table-hover " border="1">
+        <div class="MRheader"  style=" font-family: 'Nanum Pen Script'; font-size: 50px;">공지사항</div>
+          <table class ="table table-bordered table-hover " border="1" style="margin-top: 130px;">
             <thead style="text-align:center" class ="thead-dark">
               <tr>
                   <th>제목</th>
@@ -96,7 +95,7 @@
             </thead>
             <tbody>
             <%
-              for(var i = 0; i < 10; i++)
+              for(var i = 0; i < 8; i++)
               {
                 if(length - i <= 0){
                   i++;
@@ -116,13 +115,141 @@
         <hr>
         <!-- Pager -->
         <div class="clearfix">
-          <a class="btn btn-dark float-right" href="/notice/1">더보기 &rarr;</a>
+          <a class="btn btn-dark float-right" style="border-radius:10%" href="/notice/1">더보기</a>
         </div>
     </div>
   </div>
 
-  <hr>
 
+<div class="container-fluid col-md-13" style="margin-top:100px; margin-bottom:100px">
+  <div style="font-size: 70px; font-family: 'Nanum Pen Script'; float:left;">제휴업체</div>
+  <div style="font-size: 50px; font-family: 'Nanum Pen Script'; float:right; margin-right: 530px; margin-top:30px">리스트</div>
+    <div id="map" style="width:60%; float: left; height:700px; clear: both"></div>
+    <table class ="table table-bordered table-hover " border="1" style="float: left; width:20%">
+      <tr>
+        <td>
+          g
+        </td>
+      </tr>
+      <tr>
+        <td>
+          d
+        </td>
+      </tr>
+    </table>
+    <div style="clear:both;"id="result"></div>
+</div>
+
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=43117e0f00f30986288a3aff82dd7fd0"></script>
+	<script>
+		var container = document.getElementById('map');
+		var options = {
+			center: new kakao.maps.LatLng(36.6255756, 127.4525355),
+			level: 4
+		};
+
+		var map = new kakao.maps.Map(container, options);
+
+
+    var imageSrc = 'images/school_icon.PNG'; // 마커이미지의 주소입니다
+        imageSize = new kakao.maps.Size(64, 69); // 마커이미지의 크기입니다
+        imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+
+    // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
+
+    // 마커가 표시될 위치입니다
+    var markerPosition  = new kakao.maps.LatLng(36.62549272644687, 127.4544471726642);
+
+    // 마커를 생성합니다
+    var marker = new kakao.maps.Marker({
+        position: markerPosition,
+        image: markerImage // 마커이미지 설정
+    });
+
+    // 마커가 지도 위에 표시되도록 설정합니다
+    marker.setMap(map);
+
+    // 아래 코드는 지도 위의 마커를 제거하는 코드입니다
+    // marker.setMap(null);
+
+    // 지도에 클릭 이벤트를 등록합니다
+    // 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
+    kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
+
+        // 클릭한 위도, 경도 정보를 가져옵니다
+        var latlng = mouseEvent.latLng;
+
+        var message = '클릭한 위치의 위도는 ' + latlng.getLat() + ' 이고, ';
+        message += '경도는 ' + latlng.getLng() + ' 입니다';
+
+        var resultDiv = document.getElementById('result');
+        resultDiv.innerHTML = message;
+      });
+
+      var iwContent = '<div style="padding:5px;">Hello World!</div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+          iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
+
+      // 인포윈도우를 생성합니다
+      var infowindow = new kakao.maps.InfoWindow({
+          content : iwContent,
+          removable : iwRemoveable
+      });
+
+      // 마커에 클릭이벤트를 등록합니다
+      kakao.maps.event.addListener(marker, 'click', function() {
+            // 마커 위에 인포윈도우를 표시합니다
+            infowindow.open(map, marker);
+      });
+
+
+
+
+
+
+
+    // 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+var mapTypeControl = new kakao.maps.MapTypeControl();
+
+// 지도 타입 컨트롤을 지도에 표시합니다
+map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+
+function getInfo() {
+    // 지도의 현재 중심좌표를 얻어옵니다
+    var center = map.getCenter();
+
+    // 지도의 현재 레벨을 얻어옵니다
+    var level = map.getLevel();
+
+    // 지도타입을 얻어옵니다
+    var mapTypeId = map.getMapTypeId();
+
+    // 지도의 현재 영역을 얻어옵니다
+    var bounds = map.getBounds();
+
+    // 영역의 남서쪽 좌표를 얻어옵니다
+    var swLatLng = bounds.getSouthWest();
+
+    // 영역의 북동쪽 좌표를 얻어옵니다
+    var neLatLng = bounds.getNorthEast();
+
+    // 영역정보를 문자열로 얻어옵니다. ((남,서), (북,동)) 형식입니다
+    var boundsStr = bounds.toString();
+
+
+    var message = '지도 중심좌표는 위도 ' + center.getLat() + ', <br>';
+    message += '경도 ' + center.getLng() + ' 이고 <br>';
+    message += '지도 레벨은 ' + level + ' 입니다 <br> <br>';
+    message += '지도 타입은 ' + mapTypeId + ' 이고 <br> ';
+    message += '지도의 남서쪽 좌표는 ' + swLatLng.getLat() + ', ' + swLatLng.getLng() + ' 이고 <br>';
+    message += '북동쪽 좌표는 ' + neLatLng.getLat() + ', ' + neLatLng.getLng() + ' 입니다';
+    console.log(message);
+    // 개발자도구를 통해 직접 message 내용을 확인해 보세요.
+    // ex) console.log(message);
+}
+	</script>
+
+  <hr>
   <!-- Footer -->
   <footer class="footer">
     <div class="container-">
@@ -160,6 +287,8 @@
   <!-- Custom scripts for this template -->
   <script src="JavaScripts/clean-blog.min.js"></script>
 
-</body>
+  <!-- Kakao API -->
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services,clusterer,drawing"></script>
 
+</body>
 </html>

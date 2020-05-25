@@ -174,9 +174,9 @@ img::-moz-selection {
   /* header */
   .MRheader{
     font-size: 40px;
-    text-align:center;
+    float: left;
     margin:0px;
-    margin-top: 20px;
+    margin-top: 60px;
     padding:0px
   }
   .MLheader{
@@ -188,12 +188,10 @@ img::-moz-selection {
     padding:0px
   }
   .Rdiv{
-    width:39%;
-    padding: 10px;
+    width:48%;
   }
   .Ldiv{
-    width:57%;
-    margin-left:40px
+    width:49%;
   }
 
   /* table */
