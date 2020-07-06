@@ -8,8 +8,8 @@ router.get('/calendar', function(req, res, next) {
   var sql = "select * from calendar";
   conn.query(sql, function (err, rows) {
     console.log(rows);
-    if (!req.user) res.render('calendar', { logIO_L : 'login', logIO_T : '로그인', rows : rows });
-    else res.render('calendar', { logIO_L : 'logout', logIO_T : '로그아웃', rows : rows });
+    if (!req.user) res.render('test', { logIO_L : 'login', logIO_T : '로그인', rows : rows });
+    else res.render('test', { logIO_L : 'logout', logIO_T : '로그아웃', rows : rows });
   });
 
 });
@@ -25,7 +25,7 @@ router.post('/calendar_write', function(req,res,next){
 
     conn.query(sql, datas, function (err, rows) {
         if (err){console.error("err : " + err);}
-        else{res.redirect('/calendar');}
+        else{res.redirect('/test');}
     });
 });
 
