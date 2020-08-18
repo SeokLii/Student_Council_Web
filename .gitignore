@@ -24,3 +24,5 @@ yarn-error.log*
 
 # database
 database/
+routes/database/database_info.js
+app.js
