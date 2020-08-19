@@ -18,7 +18,7 @@
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Gamja+Flower|Hi+Melody|Jua|Nanum+Brush+Script|Nanum+Pen+Script&display=swap&subset=korean" rel="stylesheet">
 <!-- Custom styles for this template -->
-<link href="stylesheets/clean-blog.min.css" rel="stylesheet"> <!--이름 변경 필요-->
+<link href="stylesheets/login.css" rel="stylesheet">
 </head>
 <body>
 
@@ -41,9 +41,9 @@
           <li class="nav-item">
             <a class="nav-link" href="/notice/1">공지사항</a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" href="/calendar">확생회 일정</a>
-          </li>
+          </li> -->
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle= "dropdown">대여 관리</a>
             <div class="dropdown-menu">
@@ -74,20 +74,22 @@
       </div>
     </div>
   </header>
+
+ <!-- Login Form -->
 <form action="/login" method="POST">
-  <div class="container-fluid col-md-5" style="text-align: center; margin-bottom:200px; margin-top:100px; ">
-			<h2 style="color:#62656a; font-size: 100px; margin-bottom:20px">EROOM</h2>
+  <div class="container-fluid col-md-9" style="text-align: center; margin-bottom:200px; margin-top:100px; ">
+			<h2 class="Loginheader">EROOM</h2>
       <h5 class="form-signin-heading">로그인 정보를 입력하세요</h5>
-        <div style="width: 300px; display : block; margin : 0 auto;">
+        <div class="LoginForm">
           <input class="form-control" type="text" name="userid" id="userid" placeholder="ID" requiredd><br>
           <input class="form-control" type="password" name="password" id="password" placeholder="Password" required><br>
-          <button style="background-color:#86888c" class="btn btn-lg btn-secondary btn-block" type="submit" id="btn-Yes">로 그 인</button>
+          <button class="btn btn-lg btn-secondary btn-block" type="submit" id="btn-Yes">로 그 인</button>
         </div>
-          <img style="width:390px; height:350px; clear:both;margin-top:150px; margin-right:15px" src="images/eroom_mark2.PNG"/>
+          <img class="LoginImg" src="images/eroom_mark2.PNG"/>
   </div>
-    </form>
+</form>
 
-<hr style="clear:both"/>
+<hr>
 <!-- Footer -->
 <footer class="footer">
   <div class="container">
@@ -110,7 +112,7 @@
             </a>
           </li>
         </ul>
-        <p class="copyright text-muted">(28644) 충북 청주시 서원구 충대로 1, 충북대학교 전자정보대학 소프트웨어학과 S4-1동(전자정보 3관) 109호<br />
+        <p class="copyright text-muted">(28644) 충북 청주시 서원구 충대로 1, 충북대학교 <br/> 전자정보대학 소프트웨어학과 S4-1동(전자정보 3관) 109호<br />
                                         TEL : 010-6583-5683 / 010-3302-9138<br />
                                         Copyright © EROOM. All Rights Reserved.</p>
       </div>

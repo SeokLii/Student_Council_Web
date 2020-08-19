@@ -18,6 +18,7 @@
   <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
   <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Gamja+Flower|Nanum+Myeongjo|Hi+Melody|Jua|Nanum+Brush+Script|Nanum+Pen+Script&display=swap&subset=korean" rel="stylesheet">
+  
   <!-- Custom styles for this template -->
   <link href="stylesheets/index.css" rel="stylesheet"> <!--이름 변경 필요-->
 
@@ -29,7 +30,7 @@
   <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
       <a class="navbar-brand" href="/" style="font-size: 30px">EROOM</a>
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler navbar-toggler-right menubtn" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         Menu
         <i class="fas fa-bars"></i>
       </button>
@@ -44,9 +45,9 @@
           <li class="nav-item">
             <a class="nav-link" href="/notice/1">공지사항</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/test">확생회 일정</a>
-          </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link" href="/calendar">확생회 일정</a>
+          </li> -->
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle= "dropdown">대여 관리</a>
             <div class="dropdown-menu">
@@ -81,11 +82,19 @@
   <!-- Main Content -->
   <div class="container-fluid col-md-7">
     <div class="row">
-      <div class="Ldiv">
-        <img style="text-align:center; padding: 10px; margin-top: 80px; border-radius: 10%; width:100%"src="images/index.PNG"/></div>
-      <div class="Rdiv">
-        <div class="MRheader"  style=" font-family: 'Nanum Pen Script'; font-size: 50px;">공지사항</div>
-          <table class ="table table-bordered table-hover " border="1" style="margin-top: 130px;">
+      <div class="IntroDiv">
+        <div class="IDheader">전자정보대학 제8대 소프트웨어학과</div>
+        <img class="introImg" style="text-align:center; width:100%"src="images/index.PNG"/>
+      </div>
+      <div class="CoalDiv">
+        <div class="CDheader">추천 페이지</div>
+        <a href="https://google.com" target="_blank">
+          <img class="CoalImg" style="text-align:center; width:100%"src="images/URLStudy4.PNG"/>
+        </a>
+      </div>
+      <div class="NoticeDiv">
+        <div class="NDheader">공지사항</div>
+          <table class ="table table-bordered table-hover" border="1">
             <thead style="text-align:center" class ="thead-dark">
               <tr>
                   <th>제목</th>
@@ -115,7 +124,7 @@
         <hr>
         <!-- Pager -->
         <div class="clearfix">
-          <a class="btn btn-dark float-right" style="border-radius:10%" href="/notice/1">더보기</a>
+          <a class="btn btn-dark float-right" id="OverBtn" href="/notice/1"><i class="fas fa-arrow-right"></i></a>
         </div>
     </div>
   </div>
@@ -254,7 +263,7 @@ function getInfo() {
   <footer class="footer">
     <div class="container-">
       <div class="row-">
-        <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="col-md-11 mx-auto">
           <ul class="list-inline text-center">
             <li class="list-inline-item">
               <a href="https://instagram.com/software_eroom?igshid=12vwurt8xamjq">
@@ -272,7 +281,7 @@ function getInfo() {
               </a>
             </li>
           </ul>
-          <p class="copyright text-muted">(28644) 충북 청주시 서원구 충대로 1, 충북대학교 전자정보대학 소프트웨어학과 S4-1동(전자정보 3관) 109호<br />
+          <p class="copyright text-muted">(28644) 충북 청주시 서원구 충대로 1, 충북대학교 <br/> 전자정보대학 소프트웨어학과 S4-1동(전자정보 3관) 109호<br />
                                           TEL : 010-6583-5683 / 010-3302-9138<br />
                                           Copyright © EROOM. All Rights Reserved.</p>
         </div>
@@ -285,7 +294,6 @@ function getInfo() {
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Custom scripts for this template -->
-  <script src="JavaScripts/clean-blog.min.js"></script>
 
   <!-- Kakao API -->
   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services,clusterer,drawing"></script>
