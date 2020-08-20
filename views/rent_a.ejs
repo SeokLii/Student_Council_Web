@@ -29,19 +29,16 @@
 <script>
 //description function
 $(function() {
-  // for(var a = 0; a < parseInt(length); a++)
-  // {
-  //   $(".name"+a+"").on("click", function(){
-  //     swal("<%=rows[0].description%>"); // =alert(a);
-  //   });
-  // }
-  $(".name0").on("click", function(){swal("<%=rows[0].description%>");}); // =alert(a);
-  $(".name1").on("click", function(){swal("<%=rows[1].description%>");});
-  $(".name2").on("click", function(){swal("<%=rows[2].description%>");});
-  $(".name3").on("click", function(){swal("<%=rows[3].description%>");});
-  $(".name4").on("click", function(){swal("<%=rows[4].description%>");});
-  $(".name5").on("click", function(){swal("<%=rows[5].description%>");});
-  $(".name6").on("click", function(){swal("<%=rows[6].description%>");});
+  <%
+    for(var a=0; a< rows.length; a++)
+    {
+      var k = rows[a].description;
+  %>
+      $(".name" + <%=a%>).on("click", function(){
+      swal("<%=k%>");
+      });
+  <%}
+  %>
 });
 
 //search function

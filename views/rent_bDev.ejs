@@ -29,28 +29,16 @@
 <script>
 //description function
 $(function() {
-  // for(var a = 0; a < parseInt(length); a++)
-  // {
-  //   $(".name"+a+"").on("click", function(){
-  //     swal("<%=rows[0].description%>"); // =alert(a);
-  //   });
-  // }
-  $(".name0").on("click", function(){swal("<%=rows[0].description%>");}); // =alert(a);
-  $(".name1").on("click", function(){swal("<%=rows[1].description%>");});
-  $(".name2").on("click", function(){swal("<%=rows[2].description%>");});
-  $(".name3").on("click", function(){swal("<%=rows[3].description%>");});
-  $(".name4").on("click", function(){swal("<%=rows[4].description%>");});
-  $(".name5").on("click", function(){swal("<%=rows[5].description%>");});
-  $(".name6").on("click", function(){swal("<%=rows[6].description%>");});
-  $(".name7").on("click", function(){swal("<%=rows[7].description%>");});
-  $(".name8").on("click", function(){swal("<%=rows[8].description%>");});
-  $(".name9").on("click", function(){swal("<%=rows[9].description%>");});
-
-  $(".name10").on("click", function(){swal("<%=rows[10].description%>");});
-  $(".name11").on("click", function(){swal("<%=rows[11].description%>");});
-  $(".name12").on("click", function(){swal("<%=rows[12].description%>");});
-  $(".name13").on("click", function(){swal("<%=rows[13].description%>");});
-  $(".name14").on("click", function(){swal("<%=rows[14].description%>");});
+  <%
+    for(var a=0; a< rows.length; a++)
+    {
+      var k = rows[a].description;
+  %>
+      $(".name" + <%=a%>).on("click", function(){
+      swal("<%=k%>");
+      });
+  <%}
+  %>
 });
 
 //search function
@@ -222,10 +210,9 @@ $(function(){
             </tbody>
           </table>
           <div class="clearfix">
-            <button onclick="check();" type="submit">대여</button>
-            <button onclick="check();" type="submit">반납</button>
-            <!-- <a class="btn btn-dark float-right" href="/notice_delete/<%=rows.number%>"><b>반납</b></a>
-            <a class="btn btn-dark float-right" href="/rental"><b>대여</b></a> -->
+            <button type="submit">대여</button>
+            <button type="submit">반납</button>
+            <a class="btn btn-dark float-right" id="notice_write" href="/rent_b_write"><b>물품 추가</b></a>
           </div>
       </form>
     </div>

@@ -570,4 +570,61 @@ router.post('/rental_b', function(req,res,next){
   });
 });
 
+router.get('/rent_write', function(req, res, next){
+  res.render('rent_write');
+});
+router.get('/rent_a_write', function(req, res, next){
+  res.render('rent_a_write');
+});
+router.get('/rent_b_write', function(req, res, next){
+  res.render('rent_b_write');
+});
+
+router.post('/rent_write/write', function(req,res,next){
+      var kind = req.body.kind;
+      var name = req.body.name;
+      var code = req.body.code;
+      var description = req.body.description;
+     
+      var datas = [kind, name, code, description];
+      var sql = "insert into rent(id, kind, name, code, description)" +
+                  " values((select MAX(id)+1 from rent a),?,?,?,?)";
+      conn.query(sql,datas, function (err, rows) {
+          if (err){console.error("err : " + err);}
+          else{res.redirect('/rent');}
+      });
+  });
+
+  router.post('/rent_a_write/write', function(req,res,next){
+    var kind = req.body.kind;
+    var name = req.body.name;
+    var code = req.body.code;
+    var description = req.body.description;
+   
+    var datas = [kind, name, code, description];
+    var sql = "insert into rent_a(id, kind, name, code, description)" +
+                " values((select MAX(id)+1 from rent_a a),?,?,?,?)";        
+    
+    conn.query(sql,datas, function (err, rows) {
+        if (err){console.error("err : " + err);}
+        else{res.redirect('/rent_a');}
+    });
+});
+
+router.post('/rent_b_write/write', function(req,res,next){
+  var kind = req.body.kind;
+  var name = req.body.name;
+  var code = req.body.code;
+  var description = req.body.description;
+ 
+  var datas = [kind, name, code, description];
+  var sql = "insert into rent_b(id, kind, name, code, description)" +
+              " values((select MAX(id)+1 from rent_b a),?,?,?,?)";
+  
+  conn.query(sql,datas, function (err, rows) {
+      if (err){console.error("err : " + err);}
+      else{res.redirect('/rent_b');}
+  });
+});
+
 module.exports = router;
