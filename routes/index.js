@@ -3,7 +3,6 @@ var router = express.Router(); //라우터 분리
 var mysql_odbc = require('./database/database_conn')();
 var conn = mysql_odbc.init();
 
-
 /* GET home page. */
 router.get('/', function(req, res, next) {
   var sql = "select number, title, content, studentID, name, grade, source, date_format(date, '%Y-%m-%d')date, imgPath from board";

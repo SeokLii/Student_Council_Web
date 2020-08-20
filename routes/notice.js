@@ -12,6 +12,7 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage })
 var mysql_odbc = require('./database/database_conn')();
 var conn = mysql_odbc.init();
+var user = require('./database/database_user');
 
 /* Board List page */
 router.get('/notice/:page', function(req, res, next) { //메인에서 page:1로 넘겨주면 됌
@@ -24,7 +25,22 @@ router.get('/notice/:page', function(req, res, next) { //메인에서 page:1로 
     if (!req.user) res.render('notice', {logIO_L : 'login', logIO_T : '로그인', rows: rows, page: page, length: rows.length-1, page_num: 20, pass: true});
     else res.render('notice', {logIO_L : 'logout', logIO_T : '로그아웃', rows: rows, page: page, length: rows.length-1, page_num: 20, pass: true});
   } else{
-    if((req.user.id == "k1nder" && req.user.password == "asd123")||(req.user.id == "jung2da" && req.user.password == "jjung2259")||(req.user.id == "vouobb" && req.user.password == "dbwjd0416")){
+    if(
+      (req.user.id == user.LeeWanSeok.id && req.user.password == user.LeeWanSeok.password)||
+       (req.user.id == user.KimYongGi.id && req.user.password == user.KimYongGi.password)||
+       (req.user.id == user.JeongGyeongChang.id && req.user.password == user.JeongGyeongChang.password)||
+       (req.user.id == user.LeeHaEun.id && req.user.password == user.LeeHaEun.password)||
+       (req.user.id == user.KimSeoBin.id && req.user.password == user.KimSeoBin.password)||
+       (req.user.id == user.LeeSungKyu.id && req.user.password == user.LeeSungKyu.password)||
+       (req.user.id == user.YoonJeong.id && req.user.password == user.YoonJeong.password)||
+       (req.user.id == user.KimJaeHoon.id && req.user.password == user.KimJaeHoon.password)||
+       (req.user.id == user.ShinYuJeong.id && req.user.password == user.ShinYuJeong.password)||
+       (req.user.id == user.LeeSeonMyeong.id && req.user.password == user.LeeSeonMyeong.password)||
+       (req.user.id == user.HongJinBin.id && req.user.password == user.HongJinBin.password)||
+       (req.user.id == user.JeongDaehwan.id && req.user.password == user.JeongDaehwan.password)||
+       (req.user.id == user.LeeSunyoung.id && req.user.password == user.LeeSunyoung.password)||
+       (req.user.id == user.KimSuNa.id && req.user.password == user.KimSuNa.password)
+       ){
     if (!req.user) res.render('noticeDev', {logIO_L : 'login', logIO_T : '로그인', rows: rows, page: page, length: rows.length-1, page_num: 20, pass: true});
     else res.render('noticeDev', {logIO_L : 'logout', logIO_T : '로그아웃', rows: rows, page: page, length: rows.length-1, page_num: 20, pass: true});
     }
