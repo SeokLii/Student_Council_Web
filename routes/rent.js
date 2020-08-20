@@ -585,14 +585,25 @@ router.post('/rent_write/write', function(req,res,next){
       var name = req.body.name;
       var code = req.body.code;
       var description = req.body.description;
-     
-      var datas = [kind, name, code, description];
-      var sql = "insert into rent(id, kind, name, code, description)" +
-                  " values((select MAX(id)+1 from rent a),?,?,?,?)";
-      conn.query(sql,datas, function (err, rows) {
-          if (err){console.error("err : " + err);}
-          else{res.redirect('/rent');}
-      });
+      console.log(code);
+      if(code == ""){//코드가 비어있으면
+        var datas = [kind, name, description];
+        var sql = "insert into rent(id, kind, name, code, description)" +
+        " values((select MAX(id)+1 from rent a),?,?,(select MAX(code)+1 from rent a),?)";
+
+        conn.query(sql,datas, function (err, rows) {
+        if (err){console.error("err : " + err);}
+        else{res.redirect('/rent');}
+        });
+      }else{
+        var datas = [kind, name, code, description];
+        var sql = "insert into rent(id, kind, name, code, description)" +
+        " values((select MAX(id)+1 from rent a),?,?,?,?)";
+        conn.query(sql,datas, function (err, rows) {
+        if (err){console.error("err : " + err);}
+        else{res.redirect('/rent');}
+        });
+      }
   });
 
   router.post('/rent_a_write/write', function(req,res,next){
@@ -600,31 +611,51 @@ router.post('/rent_write/write', function(req,res,next){
     var name = req.body.name;
     var code = req.body.code;
     var description = req.body.description;
-   
-    var datas = [kind, name, code, description];
-    var sql = "insert into rent_a(id, kind, name, code, description)" +
-                " values((select MAX(id)+1 from rent_a a),?,?,?,?)";        
-    
-    conn.query(sql,datas, function (err, rows) {
-        if (err){console.error("err : " + err);}
-        else{res.redirect('/rent_a');}
-    });
+    console.log(code);
+    if(code == ""){//코드가 비어있으면
+      var datas = [kind, name, description];
+      var sql = "insert into rent_a(id, kind, name, code, description)" +
+      " values((select MAX(id)+1 from rent_a a),?,?,(select MAX(code)+1 from rent_a a),?)";
+
+      conn.query(sql,datas, function (err, rows) {
+      if (err){console.error("err : " + err);}
+      else{res.redirect('/rent_a');}
+      });
+    }else{
+      var datas = [kind, name, code, description];
+      var sql = "insert into rent_a(id, kind, name, code, description)" +
+      " values((select MAX(id)+1 from rent_a a),?,?,?,?)";
+      conn.query(sql,datas, function (err, rows) {
+      if (err){console.error("err : " + err);}
+      else{res.redirect('/rent_a');}
+      });
+    }
 });
 
 router.post('/rent_b_write/write', function(req,res,next){
   var kind = req.body.kind;
-  var name = req.body.name;
-  var code = req.body.code;
-  var description = req.body.description;
- 
-  var datas = [kind, name, code, description];
-  var sql = "insert into rent_b(id, kind, name, code, description)" +
-              " values((select MAX(id)+1 from rent_b a),?,?,?,?)";
-  
-  conn.query(sql,datas, function (err, rows) {
-      if (err){console.error("err : " + err);}
-      else{res.redirect('/rent_b');}
-  });
+      var name = req.body.name;
+      var code = req.body.code;
+      var description = req.body.description;
+      console.log(code);
+      if(code == ""){//코드가 비어있으면
+        var datas = [kind, name, description];
+        var sql = "insert into rent_b(id, kind, name, code, description)" +
+        " values((select MAX(id)+1 from rent_b a),?,?,(select MAX(code)+1 from rent_b a),?)";
+
+        conn.query(sql,datas, function (err, rows) {
+        if (err){console.error("err : " + err);}
+        else{res.redirect('/rent_b');}
+        });
+      }else{
+        var datas = [kind, name, code, description];
+        var sql = "insert into rent_b(id, kind, name, code, description)" +
+        " values((select MAX(id)+1 from rent_b a),?,?,?,?)";
+        conn.query(sql,datas, function (err, rows) {
+        if (err){console.error("err : " + err);}
+        else{res.redirect('/rent_b');}
+        });
+      }
 });
 
 module.exports = router;
