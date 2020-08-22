@@ -57,8 +57,7 @@ router.get('/notice_write', function(req,res,next){
   res.render('notice_write', {data : datas});
 });
 
-router.post('/notice_write/write',upload.array('userfile',10), function(req,res,next){ //이모티콘 저장하는 것 체크하기
-//0301 다중
+router.post('/notice_write/write',upload.array('userfile',10), function(req,res,next){ 
     var title = req.body.title;
     var content = req.body.content;
     var studentID = req.body.studentID;
