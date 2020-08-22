@@ -135,9 +135,9 @@ font-size: 9px;
    display: inline;
   }
 #main_code{width:5%}
-#main_date{width:50%}
-#main_borrower{width:5%}
-#main_studentID{width:8%}
+#main_date{width:5%}
+#main_borrower{width:7%}
+#main_studentID{width:5%}
 #main_rent{width:5%}
 #main_return{width:5%}
 
