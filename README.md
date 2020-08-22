@@ -2,10 +2,12 @@
 - 충북대학교 소프트웨어학과 제8대 이룸학생회 홈페이지 개발 프로젝트
 - ( Development of the student council website for students in software department. )
 ![image](https://user-images.githubusercontent.com/43461426/90965873-1cdd0500-e507-11ea-8658-840bddb440c8.png)
-
-
-
-
+      
+      
+      
+     
+           
+           
 # 1. 페이지 구성(Page Configuration)
 ## 홈(Home)
 - 홈페이지의 전체적인 모습을 보여주는 메인 페이지로 추천페이지와 공지사항을 한눈에 보여준다.
@@ -27,13 +29,14 @@
 - 홈페이지 관리를 위해서 관리자 계정으로만 출입이 가능하다. 코로나 바이러스로 인해서 다양한 온라인 공약을 진행함에 있어 사용자 계정도 필요해질 예정이다. 하지만 학생들의 개인정보를 막 다룰 수 없기 때문에, 간단한 본인확인 과정을 통해서 학생들의 계정을 생성하고 배포할 예정입니다. (아니면 회원가입 창을 만들 예정)
 - ( Access to the administrator account is allowed only for website management. A user account will also be needed to carry out various online pledges due to the Corona virus. However, since we are not able to handle their personal information, we will create and distribute their accounts through a simple identification process (or we will create a membership window.) )
 
-* 코로나19 바이러스로 인해 온라인을 통해 학생들과 교류할 수 있는 페이지를 개발해 나갈 예정이다. 
-* ( We will develop a page where students can interact online due to the Corona19 virus. )
-
-
-
-
-
+- 코로나19 바이러스로 인해 온라인을 통해 학생들과 교류할 수 있는 페이지를 개발해 나갈 예정이다. 
+- ( We will develop a page where students can interact online due to the Corona19 virus. )
+      
+      
+      
+      
+      
+           
 # 2. Node.js
 ## express
 - node 개발의 중심적인 라이브러리이다. ( https://expressjs.com/ko/ )
@@ -58,8 +61,8 @@
 - 공지사항에서 이미지 업로드를 위해서 사용된 라이브러리이다. 동시에 여러개의 이미지까지 업로드가 가능하다.
 - ( Library used to upload images in the notice. You can upload multiple images at the same time. )
 
-        var upload = multer({ storage: storage });
-        router.post('/notice_write/write',upload.array('userfile',10), function(req,res,next){ 
+       > var upload = multer({ storage: storage });
+       > router.post('/notice_write/write',upload.array('userfile',10), function(req,res,next){ 
 
 ## passport, passport-local
 - 로그인 시 사용자 인증을 위해서 사용한 라이브러리이다. 로그인 개발시 보안을 위해 필수적으로 사용했다.
@@ -83,16 +86,15 @@
 - 개발에 도움을 받은 페이지들을 정리해보았다.
 - ( Putty SSH was used to connect and develop Centos7 in Window. )
 - ( I organized the pages that were helped with the development. )
-
-* https://paulgo1111.tistory.com/17 : nodejs
-* https://wookim789.tistory.com/20 : vscode (connect)
-* https://harsik.github.io/linux/2019/09/16/MySQL.html : mysql
-
-
-
-
-
-
+    - https://paulgo1111.tistory.com/17 : nodejs
+    - https://wookim789.tistory.com/20 : vscode (connect)
+    - https://harsik.github.io/linux/2019/09/16/MySQL.html : mysql
+      
+    
+        
+     
+     
+     
 # 4. 향후 일정
 - 따로 React + Node를 이용하여 웹 개발을 진행하고 있고, 완료한 이후에 Vue를 이용해서 기존의 ejs 코드를 변경해볼 예정이다.
 - ( We are developing the web using React + Node separately, and after completion, we will change the existing ejs code using Vue. )
