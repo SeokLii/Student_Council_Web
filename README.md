@@ -7,6 +7,7 @@
 <br/>
 <br/>
 <br/>  
+
 # 1. 페이지 구성(Page Configuration)
 ## 홈(Home)
 - 홈페이지의 전체적인 모습을 보여주는 메인 페이지로 추천페이지와 공지사항을 한눈에 보여준다.
@@ -35,6 +36,7 @@
 <br/>
 <br/>
 <br/>  
+
 # 2. Node.js
 ## express
 - node 개발의 중심적인 라이브러리이다. ( https://expressjs.com/ko/ )
