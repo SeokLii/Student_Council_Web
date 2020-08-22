@@ -150,7 +150,7 @@
               %>
                 <% var path = row.imgPath;
                 if(path){ %> <hr /><% }%> <!--null check시 javascript는 !path 부정문으로 체크한다.-->
-                <%=row.content%>
+                <pre style="white-space: pre-wrap;"><code><%=row.content%></code></pre>
               </td>
             </tr>
         </table>
