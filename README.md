@@ -92,6 +92,7 @@
 <br/>
 <br/>
 <br/>   
+
 # 4. 향후 일정
 - 따로 React + Node를 이용하여 웹 개발을 진행하고 있고, 완료한 이후에 Vue를 이용해서 기존의 ejs 코드를 변경해볼 예정이다.
 - ( We are developing the web using React + Node separately, and after completion, we will change the existing ejs code using Vue. )
