@@ -31,11 +31,14 @@
 
 - 코로나19 바이러스로 인해 온라인을 통해 학생들과 교류할 수 있는 페이지를 개발해 나갈 예정이다. 
 - ( We will develop a page where students can interact online due to the Corona19 virus. )
-      #
-      #
-      #
-      #
-      #
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
            
 # 2. Node.js
 ## express
