@@ -2,12 +2,11 @@
 - 충북대학교 소프트웨어학과 제8대 이룸학생회 홈페이지 개발 프로젝트
 - ( Development of the student council website for students in software department. )
 ![image](https://user-images.githubusercontent.com/43461426/90965873-1cdd0500-e507-11ea-8658-840bddb440c8.png)
-      
-      
-      
-     
-           
-
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>  
 # 1. 페이지 구성(Page Configuration)
 ## 홈(Home)
 - 홈페이지의 전체적인 모습을 보여주는 메인 페이지로 추천페이지와 공지사항을 한눈에 보여준다.
@@ -35,11 +34,7 @@
 <br/>
 <br/>
 <br/>
-<br/>
-<br/>
-<br/>
-<br/>
-           
+<br/>  
 # 2. Node.js
 ## express
 - node 개발의 중심적인 라이브러리이다. ( https://expressjs.com/ko/ )
@@ -92,12 +87,11 @@
     - https://paulgo1111.tistory.com/17 : nodejs
     - https://wookim789.tistory.com/20 : vscode (connect)
     - https://harsik.github.io/linux/2019/09/16/MySQL.html : mysql
-      
-    
-        
-     
-     
-     
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>   
 # 4. 향후 일정
 - 따로 React + Node를 이용하여 웹 개발을 진행하고 있고, 완료한 이후에 Vue를 이용해서 기존의 ejs 코드를 변경해볼 예정이다.
 - ( We are developing the web using React + Node separately, and after completion, we will change the existing ejs code using Vue. )
