@@ -7,7 +7,7 @@
       
      
            
-           
+
 # 1. 페이지 구성(Page Configuration)
 ## 홈(Home)
 - 홈페이지의 전체적인 모습을 보여주는 메인 페이지로 추천페이지와 공지사항을 한눈에 보여준다.
@@ -31,11 +31,11 @@
 
 - 코로나19 바이러스로 인해 온라인을 통해 학생들과 교류할 수 있는 페이지를 개발해 나갈 예정이다. 
 - ( We will develop a page where students can interact online due to the Corona19 virus. )
-      
-      
-      
-      
-      
+      #
+      #
+      #
+      #
+      #
            
 # 2. Node.js
 ## express
