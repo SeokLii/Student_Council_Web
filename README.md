@@ -1,5 +1,5 @@
 # EROOM-Website Project
-- [softeroom.com] : EROOM 홈페이지 링크
+- [EROOM 홈페이지 링크](http://softeroom.com)
 - 충북대학교 소프트웨어학과 제8대 이룸학생회 홈페이지 개발 프로젝트
 - ( Development of the student council website for students in software department. )
 ![image](https://user-images.githubusercontent.com/43461426/90965873-1cdd0500-e507-11ea-8658-840bddb440c8.png)
